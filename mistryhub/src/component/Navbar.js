@@ -5,11 +5,11 @@ function navbar() {
       <div>
         <nav
           class="navbar navbar-expand-lg navbar-light"
-          style={{ backgroundColor: "#570A57" }}
+          style={{ backgroundColor: "#D8D9CF" }}
         >
           <div class="container-fluid">
             <a class="navbar-brand" href="hhg.com">
-              Navbar
+              MistryHub
             </a>
             <button
               class="navbar-toggler"
@@ -25,24 +25,24 @@ function navbar() {
             <div class="collapse navbar-collapse" id="navbarNav">
               <ul class="navbar-nav">
                 <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="#">
+                  <a class="nav-link active" aria-current="page" href="dfdf">
                     Home
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#">
+                  <a class="nav-link" href="csfs">
                     Features
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#">
+                  <a class="nav-link" href="dsd">
                     Pricing
                   </a>
                 </li>
                 <li class="nav-item">
                   <a
                     class="nav-link disabled"
-                    href="#"
+                    href="djsd.cdf"
                     tabindex="-1"
                     aria-disabled="true"
                   >

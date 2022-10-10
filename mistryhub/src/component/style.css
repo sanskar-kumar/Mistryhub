@@ -1,0 +1,69 @@
+
+.scroller {
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+    
+  }
+
+.glassImageWorker{
+background: #d81313;
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(5px);
+-webkit-backdrop-filter: blur(5px);
+border: 1px solid #a91515;
+}
+.register-form-parent{
+  margin-top: 4%;
+  padding-left: 10px;
+  padding-right: 10px;
+  background-image: url("https://img.freepik.com/free-vector/factory-workers-robotic-arm-removing-packages-from-conveyor-line-engineer-using-computer-operating-process-vector-illustration-business-production-machine-technology-concepts_74855-9859.jpg?w=1380&t=st=1665427515~exp=1665428115~hmac=a08dc99f44e34ac816e75a33e172c16ade9e5bd75978966903d7dda96ee4e413");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.register-form{
+  padding-top:5%;
+padding-left: 10%;
+padding-right: 10%;
+background: rgba(255, 255, 255, 0.47);
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(6.2px);
+-webkit-backdrop-filter: blur(6.2px);
+}
+.input-box{
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-bottom: 2px solid rgb(137, 152, 228);
+  margin: 5px 0 22px 0;
+  background-color:rgba(255, 255, 255, 0.47) ;
+  outline:none;
+}
+.input-label{
+  font-size: 1.5rem;
+  font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.submit-button{
+margin-top: 80px;
+margin-left: 35%;
+margin-right: 50%;
+position: relative;
+height: 70px;
+width: 350px;
+/* From https://css.glass */
+background: rgba(40, 18, 210, 0.6);
+border-radius: 16px;
+border-color: azure;
+backdrop-filter: blur(9.9px);
+-webkit-backdrop-filter: blur(9.9px);
+}
+input[type="text"]
+{
+    font-size:24px;
+}
+select{
+  font-size:24px;
+}

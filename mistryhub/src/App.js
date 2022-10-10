@@ -1,18 +1,15 @@
-import Navbar from './Navbar';
-import Carsouel from './Carsouel';
-import Services from './Services';
-import Faq from './Faq';
-import Worker from './Worker';
+import { Route, Routes } from 'react-router-dom';
+import Home from './component/Home';
+import Worker from './component/Worker';
 function App() {
   return (
-    <div className="App">
-      <Navbar />
-      <Carsouel />
-      <Services />
-      <Worker />
-      <Faq/>
+    <>
+       <Routes > 
+          <Route path = '/' element = { < Home />}/>
+          <Route path = '/worker' element = { < Worker  /> }/>
+       </Routes>
 
-    </div>
+    </>
   );
 }
 
