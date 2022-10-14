@@ -1,9 +1,10 @@
+import "./style.css";
 function Faq() {
   return (
-    <div>
+    <div id="FAQ">
       <h1 style={{ textAlign: "center" }}>Frequently Asked Questions</h1>
-      <div class="accordion" id="accordionExample">
-        <div class="accordion-item">
+      <div class="accordion acc-box" id="accordionExample">
+        <div class="accordion-item acc-box-item">
           <h2 class="accordion-header" id="headingOne">
             <button
               class="accordion-button"
@@ -13,7 +14,7 @@ function Faq() {
               aria-expanded="true"
               aria-controls="collapseOne"
             >
-              Accordion Item #1
+              <h4>Accordion Item #3</h4>
             </button>
           </h2>
           <div
@@ -34,7 +35,7 @@ function Faq() {
             </div>
           </div>
         </div>
-        <div class="accordion-item">
+        <div class="accordion-item acc-box-item">
           <h2 class="accordion-header" id="headingTwo">
             <button
               class="accordion-button collapsed"
@@ -44,7 +45,7 @@ function Faq() {
               aria-expanded="false"
               aria-controls="collapseTwo"
             >
-              Accordion Item #2
+              <h4>Accordion Item #3</h4>
             </button>
           </h2>
           <div
@@ -53,7 +54,7 @@ function Faq() {
             aria-labelledby="headingTwo"
             data-bs-parent="#accordionExample"
           >
-            <div class="accordion-body">
+            <div class="accordion-body acc-box-item">
               <strong>This is the second item's accordion body.</strong> It is
               hidden by default, until the collapse plugin adds the appropriate
               classes that we use to style each element. These classes control
@@ -65,8 +66,8 @@ function Faq() {
             </div>
           </div>
         </div>
-        <div class="accordion-item">
-          <h2 class="accordion-header" id="headingThree">
+        <div class="accordion-item acc-box-item">
+          <h2 class="accordion-header" id="headingThree" >
             <button
               class="accordion-button collapsed"
               type="button"
@@ -75,7 +76,7 @@ function Faq() {
               aria-expanded="false"
               aria-controls="collapseThree"
             >
-              Accordion Item #3
+              <h4>Accordion Item #3</h4>
             </button>
           </h2>
           <div

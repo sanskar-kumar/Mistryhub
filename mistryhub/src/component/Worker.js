@@ -1,11 +1,16 @@
 import "./style.css";
+import Navbar from "./Navbar";
+import Form from "./Form";
 function worker() {
   return (
+
     <div>
-      <div>
+      <Navbar/>
+      <div style={{ width: "100%" }}>
         <img
           src="https://img.freepik.com/free-vector/set-modern-workers-repairing-house_1262-19340.jpg?w=1480&t=st=1665426300~exp=1665426900~hmac=63a01f09da557f9836adc551aa512f3fc5a0690b2b20ddc99bc0b61ef65f6d4a"
           alt="bannerWorker"
+          width="100%"
         />
       </div>
       <h1 style={{ textAlign: "center", color: "red" }}>Work with us</h1>
@@ -45,43 +50,7 @@ function worker() {
         </div>
       </div>
       <h1 style={{textAlign:"center",color:"rgba(40, 18, 210, 0.6)",fontSize:"3rem",fontFamily:"calibiri"}}><strong>Register with us and we will publish your details!</strong></h1>
-      <div className="register-form-parent" style={{ height: "1000px" }}>
-        <div className="register-form" style={{ height: "100%" }}>
-          <form>
-            <div className="input">
-              <label className="input-label">Full name</label>
-              <input className="input-box" type="text" placeholder="Name" />
-            </div>
-            <div className="input">
-              <label className="input-label">Category</label>
-              <select className="input-box">
-                <option value="volvo">Electrician</option>
-                <option value="saab">Plumber</option>
-                <option value="mercedes">Carpenter</option>
-                <option value="audi">Manson</option>
-                <option value="audi">Painter</option>
-              </select>
-            </div>
-            <div className="input">
-              <label className="input-label">Experience</label>
-              <input className="input-box" type="number" />
-            </div>
-            <div className="input">
-              <label className="input-label">Location</label>
-              <input className="input-box" type="text" />
-            </div>
-            <div className="input">
-              <label className="input-label">Contact Number</label>
-              <input className="input-box" type="number" />
-            </div>
-            <div className="input">
-              <label className="input-label">About You </label>
-              <input className="input-box" type="text" />
-            </div>
-            <button type="submit" className="submit-button"><h2>Submit</h2></button>
-          </form>
-        </div>
-      </div>
+    <Form/>
     </div>
   );
 }

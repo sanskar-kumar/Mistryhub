@@ -1,50 +1,47 @@
-import Carousel from 'react-bootstrap/Carousel';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import Carousel from "react-bootstrap/Carousel";
+import SearchIcon from '@mui/icons-material/Search';
+import "bootstrap/dist/css/bootstrap.min.css";
 function UncontrolledExample() {
   return (
     <div>
-    <Carousel>
-      <Carousel.Item>
-        <img
-          className="d-block w-100"
-          src='https://images.unsplash.com/photo-1665249932112-d6271dd71a97?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80'
-          alt="First slide"
-          height={400}
-        />
-        <Carousel.Caption>
-          <h3>First slide label</h3>
-          <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-        </Carousel.Caption>
-      </Carousel.Item>
-      <Carousel.Item>
-        <img
-          className="d-block w-100"
-          src="https://images.unsplash.com/photo-1665249932112-d6271dd71a97?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
-          alt="Second slide"
-          height={400}
-        />
+      <Carousel>
+        <Carousel.Item>
+          <img
+            className="d-block w-100"
+            src="https://img.freepik.com/free-vector/construction-banner-with-worker-crane-hook_107791-8699.jpg?w=1380&t=st=1665726372~exp=1665726972~hmac=3751ed0d1b33112180c219e79f59e82dafe3ba9ff525616f8ca398ddcc0bf917"
+            alt="First slide"
+            height="600px"
+          />
+          {/* <Carousel.Caption>
+            <h3>First slide label</h3>
+            <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+          </Carousel.Caption> */}
+        </Carousel.Item>
+        <Carousel.Item>
+          <img
+            className="d-block w-100"
+            src="https://img.freepik.com/free-vector/cartoon-scene-building-construction-site_1308-105125.jpg?w=1380&t=st=1665746762~exp=1665747362~hmac=7454ab520fb00dd07384437b531276df394f62f472098319d400ad4057b15a64"
+            alt="Second slide"
+            height="600px"
 
-        <Carousel.Caption>
-          <h3>Second slide label</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-        </Carousel.Caption>
-      </Carousel.Item>
-      <Carousel.Item>
-        <img
-          className="d-block w-100"
-          src="https://images.unsplash.com/photo-1665249932112-d6271dd71a97?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
-          alt="Third slide"
-          height={400}
-        />
+          />
+        </Carousel.Item>
+        <Carousel.Item>
+          <img
+            className="d-block w-100"
+            src="https://img.freepik.com/free-vector/illustrated-people-renovating-living-room_23-2148677770.jpg?w=1380&t=st=1665746532~exp=1665747132~hmac=cfa0f2646d914fe01b964c7e63497728167b2ab483f8d0d79ca4d2a1c2d3475a"
+            alt="Third slide"
+            height="600px"
+          />
+        </Carousel.Item>
+      </Carousel>
 
-        <Carousel.Caption>
-          <h3>Third slide label</h3>
-          <p>
-            Praesent commodo cursus magna, vel scelerisque nisl consectetur.
-          </p>
-        </Carousel.Caption>
-      </Carousel.Item>
-    </Carousel>
+      <div className="search-bar-parent" id="search">
+      <div className="search-bar">
+      <button type="button" style={{width:"5%",backgroundColor:"transparent",border:"0"}}><SearchIcon sx={{fontSize:40,color:'rgb(137, 152, 228)'}}/></button>
+        <input  className="input-bar" type="text" placeholder="What are you looking for?" style={{width:"95%"}}/>
+        </div>
+      </div>
     </div>
   );
 }

@@ -64,6 +64,38 @@ input[type="text"]
 {
     font-size:24px;
 }
+input[type="number"]
+{
+    font-size:24px;
+}
 select{
   font-size:24px;
+}
+.acc-box{
+  margin: 40px;
+  padding: 20px;
+  outline:thick solid rgb(137, 152, 228);
+  border-radius: 10px;
+}
+.acc-box-item{
+  font-size: 20px;
+  border-radius: 10px;
+}
+.services-class{
+  background-color: #EFEFEF;
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+.search-bar-parent{
+  margin-top: 50px;
+  width:100%;
+}
+.search-bar{
+  margin:25px;
+  outline: thick solid rgb(137, 152, 228);
+}
+.input-bar{
+  border-radius: 10px;
+  outline: none;
+  border: 0px;
 }

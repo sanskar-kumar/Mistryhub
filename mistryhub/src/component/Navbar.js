@@ -1,14 +1,15 @@
 import "./navbar.css";
+// import {Link} from "react-router-dom";
 function navbar() {
   return (
     <div>
       <div>
         <nav
           class="navbar navbar-expand-lg navbar-light"
-          style={{ backgroundColor: "#D8D9CF" }}
+          style={{ backgroundColor: "rgb(137, 152, 228)",fontSize:"20px" }}
         >
           <div class="container-fluid">
-            <a class="navbar-brand" href="hhg.com">
+            <a class="navbar-brand" href="/" style={{fontSize:"23px" }}>
               MistryHub
             </a>
             <button
@@ -25,28 +26,28 @@ function navbar() {
             <div class="collapse navbar-collapse" id="navbarNav">
               <ul class="navbar-nav">
                 <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="dfdf">
+                  <a class="nav-link active" aria-current="page" href="/">
                     Home
                   </a>
                 </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="csfs">
-                    Features
+                <li class="nav-item active">
+                  <a class="nav-link active" href="./Worker">
+                  Worker
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="dsd">
-                    Pricing
+                  <a class="nav-link active" href="#search">
+                    Search
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a
-                    class="nav-link disabled"
-                    href="djsd.cdf"
-                    tabindex="-1"
-                    aria-disabled="true"
-                  >
-                    Disabled
+                  <a class="nav-link active" href="#FAQ">
+                    FAQ
+                  </a>
+                </li>
+                <li class="nav-item active">
+                  <a class="nav-link active" href="#services">
+                  Services
                   </a>
                 </li>
               </ul>
