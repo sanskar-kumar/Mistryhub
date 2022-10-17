@@ -2,10 +2,10 @@ import "./style.css";
 import Navbar from "./Navbar";
 import Form from "./Form";
 function worker() {
+ 
   return (
-
     <div>
-      <Navbar/>
+      <Navbar />
       <div style={{ width: "100%" }}>
         <img
           src="https://img.freepik.com/free-vector/set-modern-workers-repairing-house_1262-19340.jpg?w=1480&t=st=1665426300~exp=1665426900~hmac=63a01f09da557f9836adc551aa512f3fc5a0690b2b20ddc99bc0b61ef65f6d4a"
@@ -15,7 +15,10 @@ function worker() {
       </div>
       <h1 style={{ textAlign: "center", color: "red" }}>Work with us</h1>
       <div style={{ margin: "10px" }}>
-        <div className="d-flex mx-auto" style={{ backgroundColor: "#ffffff",marginBottom:"5%" }}>
+        <div
+          className="d-flex mx-auto"
+          style={{ backgroundColor: "#ffffff", marginBottom: "5%" }}
+        >
           <div className="mx-auto" style={{ width: "45%", height: "700px" }}>
             <img
               src="https://img.freepik.com/free-vector/construction-worker-concept-illustration_114360-8916.jpg?w=826&t=st=1665426471~exp=1665427071~hmac=b7b587e762de0fe699e06e9b562d651b5d73ee6984cae857b40cc133b313b071"
@@ -49,8 +52,18 @@ function worker() {
           </div>
         </div>
       </div>
-      <h1 style={{textAlign:"center",color:"rgba(40, 18, 210, 0.6)",fontSize:"3rem",fontFamily:"calibiri"}}><strong>Register with us and we will publish your details!</strong></h1>
-    <Form/>
+      <h1
+        style={{
+          textAlign: "center",
+          color: "rgba(40, 18, 210, 0.6)",
+          fontSize: "3rem",
+          fontFamily: "calibiri",
+        }}
+      >
+        <strong>Register with us and we will publish your details!</strong>
+      </h1>
+      <Form />
+      
     </div>
   );
 }

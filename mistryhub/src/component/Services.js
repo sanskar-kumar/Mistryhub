@@ -54,7 +54,7 @@ function services() {
               width="200px"
               style={{ borderRadius: "100%" }}
             />
-            <h4 style={{ textAlign: "center" }}>Carpenter</h4>
+            <Link to="/Detail" style={{textDecoration:"none",color:"black"}}><h4 style={{ textAlign: "center" }}>Carpenter</h4></Link>
           </div>
           <div
             style={{

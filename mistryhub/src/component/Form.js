@@ -1,20 +1,8 @@
 import "./style.css";
 import { useState } from "react";
-// const mongoose = require("mongoose");
-// const db=mongoose
-//   .connect(
-//     "mongodb+srv:Sansu123:Sansu123@cluster0.xud9gr7.mongodb.net/?retryWrites=true&w=majority",
-//     {
-//       useNewUrlParser: true,
-//       useFindAndModify: false,
-//       useUnifiedTopology: true
-//     }
-//   )
-//   db.on("error", console.error.bind(console, "connection error: "));
-// db.once("open", function () {
-//   console.log("Connected successfully");
-// });
+import axios from "axios";
 function Form() {
+  
   const [workerInfo, setWorkerInfo] = useState({
     name: "",
     category: "",
@@ -27,6 +15,43 @@ function Form() {
     // prevents the submit button from refreshing the page
     // handleChange(event);
     event.preventDefault();
+    if (workerInfo.name==="") {
+      alert("Please enter your name");
+    }
+    else if (workerInfo.category==="") {
+      alert("Please enter your category");
+    }
+    else if (workerInfo.experience==="") {
+      alert("Please enter your experience");
+    }
+    else if (workerInfo.location==="") {
+      alert("Please enter your location");
+    }
+
+    else if (workerInfo.contactNumber==="" || workerInfo.contactNumber.length!==10) {
+      alert("Enter a valid contact number");
+
+    }
+    else if (workerInfo.about==="") {
+      alert("Please enter your about");
+
+    }
+    else {
+    axios.post('http://localhost:3000/worker', {
+      name: workerInfo.name,
+      category: workerInfo.category,
+      experience: workerInfo.experience,
+      location: workerInfo.location,
+      contactNumber:workerInfo.contactNumber,
+      about: workerInfo.about,
+    })
+    .then(function (response) {
+      alert("Worker added successfully");
+      console.log("The response is ", response);
+    })
+    .catch(function (error) {
+      console.log("The error is ", error);
+    });
     console.log(workerInfo);
     setWorkerInfo({
       name: "",
@@ -36,6 +61,7 @@ function Form() {
       category: "",
       location: "",
     });
+  }
   };
   return (
     <div className="register-form-parent" style={{ height: "1000px" }}>
