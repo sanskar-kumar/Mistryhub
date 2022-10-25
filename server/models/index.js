@@ -70,6 +70,21 @@ app.get("/detail", (req, res) => {
       });
     });
 });
+
+//api for finding the customDetail
+app.get("/Detail/:customDetail", (req, res) => {
+  Worker.find({category:req.params.customDetail})
+    .then(data => {
+      res.send(data);
+    })
+    .catch(err => {
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while retrieving Workers."
+      });
+    });
+});
+
 let port = process.env.PORT;
 if (port == null || port == "") {
   port = 3000;

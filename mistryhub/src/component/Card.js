@@ -3,6 +3,7 @@ function Card(props) {
         // console.log(props),
         <div className="card">
         <h4><strong>Name </strong>: {props.props.name}</h4>,
+        <h4>Category : {props.props.category}</h4>,
         <h4>Experience : {props.props.experience}</h4>,
         <h4>Location : {props.props.location}</h4>,
         <h4>Contact Number : {props.props.contactNumber}</h4>,

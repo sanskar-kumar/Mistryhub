@@ -2,27 +2,35 @@ import Navbar from "./Navbar";
 import axios from "axios";
 import { useState } from "react";
 import Card from "./Card";
+import { useParams } from "react-router-dom";
 
 function Details() {
   const [workerInfo, setWorkerInfo] = useState([]);
-  const handleClick = (event) => {
-    axios.get("http://localhost:3000/detail").then(function (response) {
-      setWorkerInfo(response.data);
-      console.log(workerInfo);
-    });
+  const handleClick = () => {
+    axios
+      .get(`http://localhost:3000/detail/${category}`)
+      .then(function (response) {
+        setWorkerInfo(response.data);
+      });
   };
-
+  const { category } = useParams();
+  var tbd=category;
+  handleClick()
+  workerInfo.length ===0 ? tbd=`No ${category} Found 😥` : tbd=category;
   return (
     <div>
       <Navbar />
-      <button onClick={handleClick}>Get all worker details</button>
-      {workerInfo.map((work) => {
-        return <>
-        <div className="worker-card-div"> <Card props={work}/></div>
-       
-        </>;
-      })}
+      
+      <h1 style={{ textAlign: "center", marginTop: "15px" }}>{tbd}</h1>
+      {workerInfo.map((worker) => {
+          return <div className="worker-card-div"> <Card props={worker} /> </div>;
+        })}
     </div>
   );
 }
 export default Details;
+// {workerInfo.map((work) => {
+//   return <>
+//   <div className="worker-card-div"> <Card props={work}/></div>
+//   </>;
+// })}

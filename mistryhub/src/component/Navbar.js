@@ -31,22 +31,22 @@ function navbar() {
                   </a>
                 </li>
                 <li class="nav-item active">
-                  <a class="nav-link active" href="./Worker">
+                  <a class="nav-link active" href="/Worker">
                   Worker
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link active" href="#search">
+                  <a class="nav-link active" href="/#search">
                     Search
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link active" href="#FAQ">
+                  <a class="nav-link active" href="/#FAQ">
                     FAQ
                   </a>
                 </li>
                 <li class="nav-item active">
-                  <a class="nav-link active" href="#services">
+                  <a class="nav-link active" href="/#services">
                   Services
                   </a>
                 </li>

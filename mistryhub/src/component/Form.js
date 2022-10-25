@@ -106,7 +106,7 @@ function Form() {
               <option name="category" value="Painter">
                 Painter
               </option>
-              <option name="category" value="Painter">
+              <option name="category" value="Repairman">
                 Repairman
               </option>
             </select>
