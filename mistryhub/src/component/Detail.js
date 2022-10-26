@@ -29,8 +29,3 @@ function Details() {
   );
 }
 export default Details;
-// {workerInfo.map((work) => {
-//   return <>
-//   <div className="worker-card-div"> <Card props={work}/></div>
-//   </>;
-// })}

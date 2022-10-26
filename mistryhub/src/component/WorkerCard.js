@@ -22,7 +22,7 @@ function workerCard({ title, imgSrc }) {
         id="worker-card-title"
         style={{ textAlign: "center" }}
       >
-        <a href={tbl} >{title}</a>
+        <a href={tbl} style={{ textDecoration: "none", color:"black"}} >{title}</a>
       </h4>
     </div>
   );
