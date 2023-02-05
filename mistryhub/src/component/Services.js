@@ -38,9 +38,9 @@ function services() {
       <div style={{ margin: "25px", marginBottom: "50px", marginTop: "50px" }}>
         <Link to="/Worker">
           <h3 style={{ textAlign: "center", color: "red" }}>
-            <a href="/worker.js" style={{ color: "red" }}>
+            {/* <a href="/worker.js" style={{ color: "red" }}> */}
               <h2>Want to work with us?</h2>
-            </a>
+            {/* </a> */}
           </h3>
         </Link>
       </div>

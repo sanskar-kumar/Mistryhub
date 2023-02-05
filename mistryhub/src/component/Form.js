@@ -1,11 +1,14 @@
 import "./style.css";
 import { useState } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 function Form() {
   
   const [workerInfo, setWorkerInfo] = useState({
     name: "",
     category: "",
+    email:"",
+    password:"",
     experience: "",
     location: "",
     contactNumber: "",
@@ -36,6 +39,14 @@ function Form() {
       alert("Please enter your about");
 
     }
+    else if (workerInfo.email==="") {
+      alert("Please enter your email");
+
+    }
+    else if (workerInfo.password==="") {
+      alert("Please enter your password");
+
+    }
     else {
     axios.post('http://localhost:3000/worker', {
       name: workerInfo.name,
@@ -44,6 +55,8 @@ function Form() {
       location: workerInfo.location,
       contactNumber:workerInfo.contactNumber,
       about: workerInfo.about,
+      email: workerInfo.email,
+      password: workerInfo.password
     })
     .then(function (response) {
       alert("Worker added successfully");
@@ -60,11 +73,13 @@ function Form() {
       about: "",
       category: "",
       location: "",
+      email:"",
+      password:""
     });
   }
   };
   return (
-    <div className="register-form-parent" style={{ height: "1000px" }}>
+    <div className="register-form-parent" style={{ height: "1100px" }}>
       <div className="register-form" style={{ height: "100%" }}>
         <form onSubmit={handleSubmit}>
           <div className="input">
@@ -136,6 +151,30 @@ function Form() {
             />
           </div>
           <div className="input">
+            <label className="input-label">Email</label>
+            <input
+              className="input-box"
+              type="email"
+              name="email"
+              onChange={(event) =>
+                setWorkerInfo({ ...workerInfo, email: event.target.value })
+              }
+              value={workerInfo.email}
+              />
+          </div>
+          <div className="input">
+            <label className="input-label">password</label>
+            <input
+              className="input-box"
+              type="password"
+              name="password"
+              onChange={(event) =>
+                setWorkerInfo({ ...workerInfo, password: event.target.value })
+              }
+              value={workerInfo.password}
+            />
+          </div>
+          <div className="input">
             <label className="input-label">Contact Number</label>
             <input
               className="input-box"
@@ -166,6 +205,7 @@ function Form() {
             <h2 style={{ width: "100%" }}>Submit</h2>
           </button>
         </form>
+        <div><Link to="/Login">Already a user</Link>  </div>
       </div>
     </div>
   );

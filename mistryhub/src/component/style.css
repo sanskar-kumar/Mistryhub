@@ -32,6 +32,16 @@ box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
 backdrop-filter: blur(6.2px);
 -webkit-backdrop-filter: blur(6.2px);
 }
+.login-form-parent{
+  margin-top: 4%;
+  margin-left: 35%;
+  margin-right: 35%;
+  padding-left: 10px;
+  padding-right: 10px;
+  background-image: url("https://img.freepik.com/free-vector/factory-workers-robotic-arm-removing-packages-from-conveyor-line-engineer-using-computer-operating-process-vector-illustration-business-production-machine-technology-concepts_74855-9859.jpg?w=1380&t=st=1665427515~exp=1665428115~hmac=a08dc99f44e34ac816e75a33e172c16ade9e5bd75978966903d7dda96ee4e413");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 .input-box{
   width: 100%;
   padding: 10px;
