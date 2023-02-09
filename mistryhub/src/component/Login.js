@@ -2,6 +2,7 @@ import "./style.css";
 import { useState } from "react";
 import axios from "axios";
 import { Link,useNavigate } from "react-router-dom";
+import Navbar from "./Navbar";
 
 function Login() {
   const navigate = useNavigate();
@@ -51,6 +52,8 @@ function Login() {
   }
   };
   return (
+    <div>
+    <Navbar/>
     <div className="login-form-parent" style={{ height: "300px" }}>
       <div className="login-form" style={{ height: "100%" }}>
         <form onSubmit={handleSubmit}>
@@ -85,6 +88,7 @@ function Login() {
         </form>
         <div><Link to="/Worker">Not a user Register</Link>  </div>
       </div>
+    </div>
     </div>
   );
 }

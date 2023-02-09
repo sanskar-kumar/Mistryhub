@@ -127,7 +127,7 @@ app.use((req, res, next) => {
                     message: 'Successful log in',
                     authorizedData
                 });
-                console.log('SUCCESS: Connected to protected route');
+                // console.log('SUCCESS: Connected to protected route');
             }
         })
     });
