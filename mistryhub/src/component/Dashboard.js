@@ -31,10 +31,10 @@ function Dashboard() {
       //   alert("Please login first");
       navigate("/login");
     });
-
+  // console.log(workerInfo);
   return (
     <div>
-    <Navbar/>
+      <Navbar />
       <div className="dashboard">
         <div className="col1">
           <div className="profile-sidebar">
@@ -53,24 +53,27 @@ function Dashboard() {
               <h2>{workerInfo.contactNumber}</h2>
               <p className="worker-description">{workerInfo.about}</p>
             </div>
-            <button className="edit-details">Edit Details</button>
+            <button className="edit-details" onClick={handleClick}>
+              Logout
+            </button>
+
+            {/* <button className="edit-details">Edit Details</button> */}
           </div>
         </div>
         <div className="col2">
           <div className="services-count">
             <div className="services-done">
-              <h2>Services Done</h2>
+              <h2>Services Done:- {workerInfo.ratingCount}</h2>
             </div>
             <div className="services-pending">
-              <h2>Servies Pending</h2>
+              <h2>Services Pending:- 0</h2>
             </div>
           </div>
           <div className="chart">
-            <BarChart />
+            <BarChart props={workerInfo} />
           </div>
         </div>
       </div>
-      <button className="" onClick={handleClick}>Logout</button>
     </div>
   );
 }

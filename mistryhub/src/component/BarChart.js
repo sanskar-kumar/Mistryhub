@@ -1,14 +1,16 @@
 import { Bar } from "react-chartjs-2";
 import Chart from "chart.js/auto";
-export default function BarChart() {
-  
+export default function BarChart(props) {
+  // console.log("The props are ", props.props.fiveStar);
+  var ratings=[props.props.fiveStar,props.props.fourStar,props.props.threeStar,props.props.twoStar,props.props.oneStar];
+  // console.log("The ratings are ", ratings);
   const data = {
     labels: ["5⭐","4⭐","3⭐","2⭐","1⭐"],
    
     datasets: [
       {
         label: "Number of Ratings",
-        data: [35, 25, 22, 20, 18, 15],
+        data: ratings,
         backgroundColor: [
           "#0A2647",
           "#144272",

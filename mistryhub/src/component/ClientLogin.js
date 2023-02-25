@@ -23,7 +23,7 @@ function Login() {
 
     }
     else {
-    axios.post('http://localhost:3000/login', {
+    axios.post('http://localhost:3000/clientLogin', {
       email: workerInfo.email,
       password: workerInfo.password
     })
@@ -34,10 +34,9 @@ function Login() {
       else{
         alert("Login Successfull");
         // console.log(response);
-        //storing the caching token in local storage
         localStorage.setItem('token', response.data);
         navigate('/Dashboard');
-        console.log("Login is successfull and data is: " + response.data);
+        console.log(response.data);
         
       }
       
@@ -45,7 +44,7 @@ function Login() {
     .catch(function (error) {
       console.log("The error is ", error);
     });
-    // console.log(workerInfo);
+    console.log(workerInfo);
     setWorkerInfo({
       email:"",
       password:""
@@ -87,7 +86,7 @@ function Login() {
             <h2 style={{ width: "100%" }}>Submit</h2>
           </button>
         </form>
-        <div><Link to="/Worker">Not a user Register</Link>  </div>
+        <div><Link to="/clientRegister">Not a user Register</Link>  </div>
       </div>
     </div>
     </div>
