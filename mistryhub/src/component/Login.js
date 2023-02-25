@@ -83,11 +83,14 @@ function Login() {
               value={workerInfo.password}
             />
           </div>
+          <div className="submit-button-parent">
           <button type="submit" className="submit-button">
             <h2 style={{ width: "100%" }}>Submit</h2>
           </button>
+          </div>
         </form>
-        <div><Link to="/Worker">Not a user Register</Link>  </div>
+        <br/>
+        <div className="text-footer"><Link to="/Worker"><h3>Not a user Register</h3></Link>  </div>
       </div>
     </div>
     </div>

@@ -106,6 +106,9 @@ function Form() {
                 setWorkerInfo({ ...workerInfo, category: event.target.value })
               }
             >
+              <option name="category" value="">
+              Select Category
+              </option>
               <option name="category" value="Electrician">
                 Electrician
               </option>
@@ -163,7 +166,7 @@ function Form() {
               />
           </div>
           <div className="input">
-            <label className="input-label">password</label>
+            <label className="input-label">Password</label>
             <input
               className="input-box"
               type="password"
@@ -205,8 +208,10 @@ function Form() {
             <h2 style={{ width: "100%" }}>Submit</h2>
           </button>
         </form>
-        <div><Link to="/Login">Already a user</Link>  </div>
-      </div>
+        <br/>
+        <div className="text-footer"><Link to="/Login"><h3>Already a user</h3></Link>  </div>
+        <br/>
+        </div>
     </div>
   );
 }
