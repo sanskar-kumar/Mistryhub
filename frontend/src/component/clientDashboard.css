@@ -1,0 +1,156 @@
+.scroller::-webkit-scrollbar {
+  display: none;
+}
+
+/* For Firefox */
+.scroller {
+  scrollbar-width: none;
+}
+.main-container {
+  display: flex;
+  height: 100vh;
+  margin: 5px;
+}
+
+.sidebar {
+  width: 30%;
+  background-color: #A6E3E9;;
+  border-radius: 20px;
+  padding: 20px;
+  margin: 10px;
+}
+
+.sidebar ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.li-normal {
+  cursor: pointer;
+  padding: 10px;
+  margin: 10px;
+  background-color: #71C9CE;
+  border-radius: 15px;
+  text-align: center;
+  font: 1.5em monospace;
+}
+.li-selected{
+  cursor: pointer;
+  padding: 10px;
+  margin: 10px;
+  background-color: #00ADB5;
+  border-radius: 15px;
+  text-align: center;
+  font: 1.5em monospace;
+
+
+}
+
+.content {
+  width: 70%;
+  flex-grow: 1;
+  padding: 20px;
+  background-color: #E3FDFD;
+  overflow-y: scroll;
+  border-radius: 20px;
+  margin: 10px;
+}
+.content::-webkit-scrollbar {
+  display: none;
+}
+h2 {
+  color: #333;
+}
+
+
+.booking-card{
+  background-color: #00ADB5;
+  margin: 2%;
+  padding: 2%;
+  border-radius: 10px;
+}
+.booking-card-content{
+  color:#EEEEEE;
+  font-size: 2 rem;
+}
+
+@media (max-width: 768px) {
+  .main-container {
+    flex-direction: column;
+    /* min-height: auto; */
+  }
+
+  .content {
+    width: 100%;
+    flex-grow: 1;
+    overflow-y: auto;
+  }
+  .sidebar {
+    width: 100%;
+    margin: 0;
+    border-radius: 0;
+  }
+}
+.profile-container {
+  border-radius: 15px;
+  padding: 20px;
+}
+
+.profile-header {
+  text-align: center;
+}
+
+.profile-pic {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 0 auto;
+}
+
+.profile-name {
+  text-align: center;
+  margin-top: 20px;
+}
+.profile-info label {
+  display: inline-block;
+  width: 80px;
+  margin-right: 10px;
+  font-weight: bold;
+}
+
+.profile-info p {
+  display: inline-block;
+  margin: 0;
+}
+
+.profile-details {
+  background-color: #FFFFFF;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+.profile-info {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.profile-info label {
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.profile-info p {
+  margin: 0;
+}
+.money-earned{
+  background-color: #00ADB5;
+  border-radius: 20px;
+  padding: 2%;
+  margin: 2%;
+  margin-left: 15%;
+  margin-right: 15%;
+  text-align: center;
+}

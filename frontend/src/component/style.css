@@ -1,0 +1,289 @@
+.scroller {
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+}
+/* For WebKit browsers (Chrome, Safari) */
+.scroller::-webkit-scrollbar {
+  display: none;
+}
+
+/* For Firefox */
+.scroller {
+  scrollbar-width: none;
+}
+.glassImageWorker {
+  background: #d81313;
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid #a91515;
+}
+.register-form-parent {
+  margin-top: 4%;
+  padding-left: 10px;
+  padding-right: 10px;
+  background-image: url("https://img.freepik.com/free-vector/factory-workers-robotic-arm-removing-packages-from-conveyor-line-engineer-using-computer-operating-process-vector-illustration-business-production-machine-technology-concepts_74855-9859.jpg?w=1380&t=st=1665427515~exp=1665428115~hmac=a08dc99f44e34ac816e75a33e172c16ade9e5bd75978966903d7dda96ee4e413");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.register-form {
+  padding-top: 5%;
+  padding-left: 10%;
+  padding-right: 10%;
+  background: rgba(255, 255, 255, 0.47);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(6.2px);
+  -webkit-backdrop-filter: blur(6.2px);
+}
+.login-form-parent {
+  margin-top: 4%;
+  margin-left: 35%;
+  margin-right: 35%;
+  padding-left: 10px;
+  padding-right: 10px;
+  background-image: url("https://img.freepik.com/free-vector/factory-workers-robotic-arm-removing-packages-from-conveyor-line-engineer-using-computer-operating-process-vector-illustration-business-production-machine-technology-concepts_74855-9859.jpg?w=1380&t=st=1665427515~exp=1665428115~hmac=a08dc99f44e34ac816e75a33e172c16ade9e5bd75978966903d7dda96ee4e413");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.input-box {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-bottom: 2px solid rgb(137, 152, 228);
+  margin: 5px 0 22px 0;
+  background-color: rgba(255, 255, 255, 0.47);
+  outline: none;
+}
+.input-label {
+  font-size: 1.5rem;
+  font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+input[type="text"] {
+  font-size: 24px;
+}
+input[type="number"] {
+  font-size: 24px;
+}
+select {
+  font-size: 24px;
+}
+.acc-box {
+  margin: 40px;
+  padding: 20px;
+  outline: thick solid rgb(137, 152, 228);
+  border-radius: 10px;
+}
+.acc-box-item {
+  font-size: 20px;
+  border-radius: 10px;
+}
+.services-class {
+  background-color: #efefef;
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+.search-bar-parent {
+  margin-top: 50px;
+  width: 100%;
+}
+.search-bar {
+  margin: 25px;
+  outline: thick solid rgb(137, 152, 228);
+}
+.input-bar {
+  border-radius: 10px;
+  outline: none;
+  border: 0px;
+}
+.card {
+  margin: 1px;
+  margin-left: 30%;
+  margin-right: 30%;
+  padding: 15px;
+  border-radius: 10px;
+  outline: thick solid rgb(137, 152, 228);
+  background-color: rgb(207, 209, 217);
+}
+.worker-card-div {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+.dashboard {
+  display: flex;
+  margin: 30px;
+}
+.col1 {
+  width: 30%;
+}
+.col2 {
+  width: 70%;
+}
+.profile-sidebar {
+  text-align: center;
+  height: 100%;
+  background-color: rgb(137, 152, 228);
+  /* margin: 5%; */
+  padding: 5%;
+  border-radius: 5%;
+}
+.profile-userpic {
+  text-align: center;
+  margin-bottom: 30px;
+  height: 200px;
+}
+.profile-userpic img {
+  /* float: none; */
+  margin-top: 20;
+  margin-bottom: 60;
+  width: 50%;
+  height: 100%;
+  -webkit-border-radius: 50% !important;
+  -moz-border-radius: 50% !important;
+  border-radius: 50% !important;
+}
+.services-count {
+  /* background-color: rgb(177, 186, 235); */
+  display: flex;
+  /* margin-top: 50px; */
+}
+.services-done {
+  width: 50%;
+  margin-left: 50px;
+  margin-right: 50px;
+  background-color: greenyellow;
+  border-radius: 10px;
+  padding: 10px;
+  text-align: center;
+}
+.services-pending {
+  width: 50%;
+  background-color: rgb(245, 161, 161);
+  margin-left: 50px;
+  margin-right: 50px;
+  border-radius: 10px;
+  padding: 10px;
+  text-align: center;
+}
+.chart{
+  margin-left : 20%;
+  margin-right : 20%;
+  margin-top: 5%;
+  background-color: #ECF9FF;
+}
+.worker-description{
+  padding: 5%;
+  font-size: 1.25rem;
+  /* width: 100%; */
+}
+.edit-details {
+  background: rgba(5, 18, 132, 0.41);;
+  background-image: -webkit-linear-gradient(top, rgba(5, 18, 132, 0.41);, rgba(5, 18, 132, 0.41););
+  background-image: -moz-linear-gradient(top, rgba(5, 18, 132, 0.41);, rgba(5, 18, 132, 0.41););
+  background-image: -ms-linear-gradient(top, rgba(5, 18, 132, 0.41);, rgba(5, 18, 132, 0.41););
+  background-image: -o-linear-gradient(top, rgba(5, 18, 132, 0.41);, rgba(5, 18, 132, 0.41););
+  background-image: linear-gradient(to bottom, rgba(5, 18, 132, 0.41);, rgba(5, 18, 132, 0.41););
+  -webkit-border-radius: 9;
+  -moz-border-radius: 9;
+  border-radius: 9px;
+  font-family: Georgia;
+  color: #000000;
+  font-size: 23px;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+  width:75%;
+}
+
+.btn:hover {
+  background: #3cb0fd;
+  background-image: -webkit-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -moz-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -ms-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -o-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
+  text-decoration: none;
+}
+.worker_details{
+  display: flex;
+  
+}
+.worker_general_details{
+  width:70%;
+}
+.worker_image img{
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+.worker_request_services{
+  background: rgba(5, 18, 132, 0.41);;
+  background-image: -webkit-linear-gradient(top, rgba(5, 18, 132, 0.41);, rgba(5, 18, 132, 0.41););
+  background-image: -moz-linear-gradient(top, rgba(5, 18, 132, 0.41);, rgba(5, 18, 132, 0.41););
+  background-image: -ms-linear-gradient(top, rgba(5, 18, 132, 0.41);, rgba(5, 18, 132, 0.41););
+  background-image: -o-linear-gradient(top, rgba(5, 18, 132, 0.41);, rgba(5, 18, 132, 0.41););
+  background-image: linear-gradient(to bottom, rgba(5, 18, 132, 0.41);, rgba(5, 18, 132, 0.41););
+  -webkit-border-radius: 9;
+  -moz-border-radius: 9;
+  border-radius: 9px;
+  font-family: Georgia;
+  color: #000000;
+  font-size: 23px;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+  width:100%;
+}
+.rating{
+  display: flex;
+  margin-top: 10px;
+}
+.star_button{
+  width: 20%;
+  margin-left: 10px;
+  margin-right: 10px;
+  background-color: rgb(245, 161, 161);
+  border-radius: 10px;
+  padding: 10px;
+  text-align: center;
+}
+
+.logout-button{
+  background: rgba(5, 18, 132, 0.41);;
+  background-image: -webkit-linear-gradient(top, rgba(5, 18, 132, 0.41), rgba(5, 18, 132, 0.41););
+  background-image: -moz-linear-gradient(top, rgba(5, 18, 132, 0.41), rgba(5, 18, 132, 0.41));
+  background-image: -ms-linear-gradient(top, rgba(5, 18, 132, 0.41), rgba(5, 18, 132, 0.41));
+  background-image: -o-linear-gradient(top, rgba(5, 18, 132, 0.41), rgba(5, 18, 132, 0.41));
+  background-image: linear-gradient(to bottom, rgba(5, 18, 132, 0.41), rgba(5, 18, 132, 0.41));
+  -webkit-border-radius: 9;
+  -moz-border-radius: 9;
+  border-radius: 9px;
+  font-family: Georgia;
+  color: #000000;
+  font-size: 15px;
+  /* padding: 10px 20px 10px 20px; */
+  text-decoration: none;
+  width:100%;
+}
+.submit-button-parent{
+  display: flex;
+}
+.submit-button {
+  margin-top: 80px;
+  /* margin-left: 50%; */
+  /* margin-right: 50%; */
+  position: relative;
+  height: 70px;
+  width: 100%;
+  /* From https://css.glass */
+  background: rgba(40, 18, 210, 0.6);
+  border-radius: 16px;
+  border-color: azure;
+  backdrop-filter: blur(9.9px);
+  -webkit-backdrop-filter: blur(9.9px);
+}
+.text-footer{
+  display: flex;
+}
