@@ -1,11 +1,18 @@
 import "./style.css";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import axios from "axios";
 import { Link,useNavigate } from "react-router-dom";
 import Navbar from "./Navbar";
 
-function Login() {
+function WorkerLogin() {
   const navigate = useNavigate();
+  useEffect(() => {
+    const isWorkerLoggedIn = localStorage.getItem("isWorkerLoggedIn");
+    if (isWorkerLoggedIn) {
+      // If client is logged in, navigate to client dashboard
+      navigate("/workerDashboard");
+    }
+  }, [navigate]);
   const [workerInfo, setWorkerInfo] = useState({
     email:"",
     password:""
@@ -36,9 +43,10 @@ function Login() {
         alert("Login Successfull");
         // console.log(response);
         //storing the caching token in local storage
-        localStorage.setItem('token', response.data.token);
+        localStorage.setItem('workerToken', response.data.workerToken);
         localStorage.setItem('workerId', response.data.workerId);
-        navigate('/Dashboard');
+        localStorage.setItem('isWorkerLoggedIn', true);
+        navigate('/workerDashboard');
         // console.log("Login is successfull and data is: " + response.data);
         
       }
@@ -57,6 +65,7 @@ function Login() {
   return (
     <div>
     <Navbar/>
+    <h1 style={{ textAlign: "center", margin: "2%" }}> Worker Login </h1>
     <div className="login-form-parent" style={{ height: "300px" }}>
       <div className="login-form" style={{ height: "100%" }}>
         <form onSubmit={handleSubmit}>
@@ -92,11 +101,11 @@ function Login() {
           </div>
         </form>
         <br/>
-        <div className="text-footer"><Link to="/Worker"><h3>Not a user Register</h3></Link>  </div>
+        <div className="text-footer"><Link to="/workerRegister" style={{textDecoration:'none'}}><h3 >Not a worker Register</h3></Link>  </div>
       </div>
     </div>
     </div>
   );
 }
-export default Login;
+export default WorkerLogin;
 //Sansu123 and Sansu123

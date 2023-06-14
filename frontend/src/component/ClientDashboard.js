@@ -5,16 +5,29 @@ import Navbar from "./Navbar";
 import Form from "./UpdateForm";
 import "./clientDashboard.css";
 import ClientBookings from "./Booking";
-import DisplayData from "./ViewProfile"
-
+import DisplayData from "./ViewProfile";
 
 const Sidebar = ({ handleOptionClick, selectedOption }) => {
-//   console.log(selectedOption);
+  const navigate = useNavigate();
+  const isClientLoggedIn = localStorage.getItem('isClientLoggedIn');
+  useEffect(() => {
+    if (isClientLoggedIn===null ) {
+      navigate('/clientLogin');
+    }
+  }, [isClientLoggedIn, navigate]);
+
+  const handleLogout = () => {
+    localStorage.removeItem("clientToken");
+    localStorage.removeItem("clientId");
+    localStorage.removeItem("isClientLoggedIn");
+    navigate("/clientLogin");
+  };
+  //   console.log(selectedOption);
   return (
     <div className="sidebar">
       {/* <h4 style={{ textAlign: "center" }}>Welcome Thomas Shelby</h4> */}
       <ul>
-      <li
+        <li
           className={
             selectedOption === "Option 4" ? "li-selected" : "li-normal"
           }
@@ -38,7 +51,7 @@ const Sidebar = ({ handleOptionClick, selectedOption }) => {
         >
           Completed Service
         </li>
-        
+
         <li
           className={
             selectedOption === "Option 3" ? "li-selected" : "li-normal"
@@ -46,6 +59,14 @@ const Sidebar = ({ handleOptionClick, selectedOption }) => {
           onClick={() => handleOptionClick("Option 3")}
         >
           Edit Profile
+        </li>
+        <li
+          className={
+            selectedOption === "Option 5" ? "li-selected" : "li-normal"
+          }
+          onClick={handleLogout}
+        >
+          Logout
         </li>
       </ul>
     </div>
@@ -64,7 +85,7 @@ const Content = ({ selectedOption }) => {
         <Form />
       ) : selectedOption === "Option 4" ? (
         <DisplayData />
-      ) :null}
+      ) : null}
     </div>
   );
 };

@@ -1,16 +1,18 @@
 import "./style.css";
-import Navbar from "./Navbar";
-import "./style.css";
 import { useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-function ClientForm() {
+import Navbar from "./Navbar";
+function Form() {
   const [workerInfo, setWorkerInfo] = useState({
     name: "",
+    category: "",
     email: "",
     password: "",
+    experience: "",
+    location: "",
     contactNumber: "",
-    address: "",
+    about: "",
   });
   const handleSubmit = (event) => {
     // prevents the submit button from refreshing the page
@@ -18,12 +20,18 @@ function ClientForm() {
     event.preventDefault();
     if (workerInfo.name === "") {
       alert("Please enter your name");
+    } else if (workerInfo.category === "") {
+      alert("Please enter your category");
+    } else if (workerInfo.experience === "") {
+      alert("Please enter your experience");
+    } else if (workerInfo.location === "") {
+      alert("Please enter your location");
     } else if (
       workerInfo.contactNumber === "" ||
       workerInfo.contactNumber.length !== 10
     ) {
       alert("Enter a valid contact number");
-    } else if (workerInfo.address === "") {
+    } else if (workerInfo.about === "") {
       alert("Please enter your about");
     } else if (workerInfo.email === "") {
       alert("Please enter your email");
@@ -31,15 +39,18 @@ function ClientForm() {
       alert("Please enter your password");
     } else {
       axios
-        .post("http://localhost:3000/clientRegister", {
+        .post("http://localhost:3000/api/worker/workerRegister", {
           name: workerInfo.name,
+          category: workerInfo.category,
+          experience: workerInfo.experience,
+          location: workerInfo.location,
           contactNumber: workerInfo.contactNumber,
-          address: workerInfo.address,
+          about: workerInfo.about,
           email: workerInfo.email,
           password: workerInfo.password,
         })
         .then(function (response) {
-          alert("Client added successfully");
+          alert("Worker added successfully");
           console.log("The response is ", response);
         })
         .catch(function (error) {
@@ -48,16 +59,20 @@ function ClientForm() {
       console.log(workerInfo);
       setWorkerInfo({
         name: "",
+        experience: "",
         contactNumber: "",
+        about: "",
+        category: "",
+        location: "",
         email: "",
         password: "",
-        address: "",
       });
     }
   };
   return (
     <div>
-      <h1 style={{ textAlign: "center", margin: "2%" }}> Client Register </h1>
+    <Navbar/>
+      <h1 style={{ textAlign: "center", margin: "2%" }}> Worker Register </h1>
       <div className="register-form-parent" style={{ height: "1100px" }}>
         <div className="register-form" style={{ height: "100%" }}>
           <form onSubmit={handleSubmit}>
@@ -77,7 +92,64 @@ function ClientForm() {
                 }
               />
             </div>
-
+            <div className="input">
+              <label className="input-label">Category</label>
+              <select
+                className="input-box"
+                onChange={(event) =>
+                  setWorkerInfo({ ...workerInfo, category: event.target.value })
+                }
+              >
+                <option name="category" value="">
+                  Select Category
+                </option>
+                <option name="category" value="Electrician">
+                  Electrician
+                </option>
+                <option name="category" value="Plumber">
+                  Plumber
+                </option>
+                <option name="category" value="Carpenter">
+                  Carpenter
+                </option>
+                <option name="category" value="Manson">
+                  Manson
+                </option>
+                <option name="category" value="Painter">
+                  Painter
+                </option>
+                <option name="category" value="Repairman">
+                  Repairman
+                </option>
+              </select>
+            </div>
+            <div className="input">
+              <label className="input-label">Experience</label>
+              <input
+                className="input-box"
+                type="number"
+                name="experience"
+                onChange={(event) =>
+                  setWorkerInfo({
+                    ...workerInfo,
+                    experience: event.target.value,
+                  })
+                }
+                value={workerInfo.experience}
+              />
+            </div>
+            <div className="input">
+              <label className="input-label">Location</label>
+              <input
+                className="input-box"
+                type="text"
+                name="location"
+                onChange={(event) =>
+                  setWorkerInfo({ ...workerInfo, location: event.target.value })
+                }
+                value={workerInfo.location}
+              />
+            </div>
             <div className="input">
               <label className="input-label">Email</label>
               <input
@@ -106,7 +178,7 @@ function ClientForm() {
               <label className="input-label">Contact Number</label>
               <input
                 className="input-box"
-                type="string"
+                type="number"
                 name="contactNumber"
                 onChange={(event) =>
                   setWorkerInfo({
@@ -118,39 +190,30 @@ function ClientForm() {
               />
             </div>
             <div className="input">
-              <label className="input-label">Address</label>
+              <label className="input-label">About You </label>
               <input
                 className="input-box"
                 type="text"
                 name="about"
                 onChange={(event) =>
-                  setWorkerInfo({ ...workerInfo, address: event.target.value })
+                  setWorkerInfo({ ...workerInfo, about: event.target.value })
                 }
-                value={workerInfo.address}
+                value={workerInfo.about}
               />
             </div>
             <button type="submit" className="submit-button">
               <h2 style={{ width: "100%" }}>Submit</h2>
             </button>
-          </form>
-          <div>
-            <Link to="/clientLogin" style={{ textDecoration: "none" }}>
-              <h4 >Already a user</h4>
-            </Link>{" "}
+            <div className="text-footer">
+            <Link to="/workerLogin" style={{ textDecoration: "none" }}>
+            <h4 >Already a registerd worker</h4>
+            </Link>
           </div>
+          </form>
         </div>
       </div>
     </div>
   );
 }
+export default Form;
 //Sansu123 and Sansu123
-
-function worker() {
-  return (
-    <div>
-      <Navbar />
-      <ClientForm />
-    </div>
-  );
-}
-export default worker;

@@ -1,0 +1,47 @@
+.footer {
+  background: linear-gradient(135deg, #e3fdfd, #cbf1f5, #a6e3e9, #71c9ce);
+    padding: 20px;
+    color: black;
+    text-align: center;
+  }
+  
+  .footer-container {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+  }
+  
+  .footer-contact,
+  .footer-social,
+  .footer-address {
+    flex: 1;
+  }
+  
+  .footer-contact h3,
+  .footer-social h3,
+  .footer-address h3 {
+    margin-bottom: 10px;
+  }
+  
+  .social-icons {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+  }
+  
+  .social-icons a {
+    color: white;
+    margin: 0 10px;
+    font-size: 20px;
+    transition: color 0.3s ease;
+  }
+  
+  .social-icons a:hover {
+    color: #eeeeee;
+  }
+  
+  .made-with-love {
+    font-size: 20px;
+    margin-top: 10px;
+  }
+  

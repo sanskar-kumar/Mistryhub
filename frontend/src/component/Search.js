@@ -15,7 +15,7 @@ function SearchBar() {
             type="button"
             style={{ width: "5%", backgroundColor: "transparent", border: "0" }}
           >
-            <SearchIcon sx={{ fontSize: 40, color: "rgb(137, 152, 228)" }} />
+            <SearchIcon sx={{ fontSize: 40, color: "#00ADB5" }} />
           </button>
         </Link>
 

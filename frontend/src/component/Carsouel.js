@@ -28,7 +28,7 @@ function UncontrolledExample() {
         <Carousel.Item>
           <img
             className="d-block w-100"
-            src="https://img.freepik.com/free-vector/illustrated-people-renovating-living-room_23-2148677770.jpg?w=1380&t=st=1665746532~exp=1665747132~hmac=cfa0f2646d914fe01b964c7e63497728167b2ab483f8d0d79ca4d2a1c2d3475a"
+            src="https://img.freepik.com/free-vector/gradient-labour-day-social-media-post-template_23-2149345853.jpg?w=1380&t=st=1686771092~exp=1686771692~hmac=2e85dc7aff9e53b7dd923699a35da3d536b12554fc9521306932ef82935d3fd7"
             alt="Third slide"
             height="600px"
           />

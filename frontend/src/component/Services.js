@@ -1,12 +1,11 @@
 import "./style.css";
 import WorkerCard from "./WorkerCard";
-import { Link } from "react-router-dom";
 function services() {
   return (
-    <div class="" id="services">
+    <div class="services" id="services">
       <div
         class="d-flex mx-auto services-class"
-        style={{ height: "auto", marginTop: "100px", marginBottom: "10px" }}
+        style={{ height: "auto", margin:'2%' }}
       >
         <div class="d-flex scroller mx-auto">
           <WorkerCard
@@ -36,13 +35,6 @@ function services() {
         </div>
       </div>
       <div style={{ margin: "25px", marginBottom: "50px", marginTop: "50px" }}>
-        <Link to="/Worker">
-          <h3 style={{ textAlign: "center", color: "red" }}>
-            {/* <a href="/worker.js" style={{ color: "red" }}> */}
-              <h2>Want to work with us?</h2>
-            {/* </a> */}
-          </h3>
-        </Link>
       </div>
     </div>
   );

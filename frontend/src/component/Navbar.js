@@ -1,20 +1,22 @@
-import "./navbar.css";
+import EngineeringIcon from '@mui/icons-material/Engineering';
+import PersonIcon from '@mui/icons-material/Person';
 // import {Link} from "react-router-dom";
-function navbar(props) {
+
+function Navbar() {
   // console.log(props);
   return (
     <div>
       <div>
         <nav
-          class="navbar navbar-expand-lg navbar-light"
-          style={{ backgroundColor: "rgb(137, 152, 228)", fontSize: "20px" }}
+          className="navbar navbar-expand-lg navbar-light justify-content-end"
+          style={{ background: "linear-gradient(135deg, #e3fdfd, #cbf1f5, #a6e3e9)", fontSize: "20px" }}
         >
-          <div class="container-fluid">
-            <a class="navbar-brand" href="/" style={{ fontSize: "23px" }}>
+          <div className="container-fluid">
+            <a className="navbar-brand" href="/" style={{ fontSize: "23px", color: 'black' }}>
               MistryHub
             </a>
             <button
-              class="navbar-toggler"
+              className="navbar-toggler"
               type="button"
               data-bs-toggle="collapse"
               data-bs-target="#navbarNav"
@@ -22,42 +24,36 @@ function navbar(props) {
               aria-expanded="false"
               aria-label="Toggle navigation"
             >
-              <span class="navbar-toggler-icon"></span>
+              <span className="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-              <ul class="navbar-nav">
-                <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="/">
+            <div className="collapse navbar-collapse justify-content-end" id="navbarNav">
+              <ul className="navbar-nav">
+                <li className="nav-item">
+                  <a className="nav-link active" aria-current="page" href="/" style={{ color: 'black' }}>
                     Home
                   </a>
                 </li>
-                <li class="nav-item active">
-                  <a class="nav-link active" href="/Worker">
-                    Worker
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link active" href="/#search">
-                    Search
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link active" href="/#FAQ">
-                    FAQ
-                  </a>
-                </li>
-                <li class="nav-item active">
-                  <a class="nav-link active" href="/#services">
+          
+                <li className="nav-item">
+                  <a className="nav-link active" href="/#services" style={{ color: 'black' }}>
                     Services
                   </a>
                 </li>
-                {props.props ? null : (
-                  <li class="nav-item active">
-                    <a class="nav-link active" href="/login">
-                      Login
-                    </a>
-                  </li>
-                )}
+                <li className="nav-item">
+                  <a className="nav-link active" href="/#search" style={{ color: 'black' }}>
+                    Search
+                  </a>
+                </li>
+                <li className="nav-item">
+                  <a className="nav-link active" href="/#FAQ" style={{ color: 'black' }}>
+                    FAQ
+                  </a>
+                </li>
+                <li className="nav-item active">
+                  <a className="nav-link active" href="/#about" style={{ color: 'black' }}>
+                    About
+                  </a>
+                </li>
               </ul>
             </div>
           </div>
@@ -66,4 +62,5 @@ function navbar(props) {
     </div>
   );
 }
-export default navbar;
+
+export default Navbar;
