@@ -72,17 +72,7 @@ exports.register = function (req, res) {
           contactNumber,
           about,
           email,
-          password: hash,
-          oneStar: 0,
-          twoStar: 0,
-          threeStar: 0,
-          fourStar: 0,
-          fiveStar: 0,
-          ratingCount: 0,
-          ratingAverage: 0,
-          servicesCompleted: 0,
-          servicesAccepted: 0,
-          servicesRejected: 0,
+          password: hash
         });
 
         newWorker

@@ -86,7 +86,7 @@ const BookingRequests = ({ typeofRequest }) => {
   const fetchBookingRequests = async () => {
     try {
       // Make an API request to fetch booking requests
-      const response = await axios.get("/api/booking-requests");
+      const response = await axios.get("/api/booking/booking-requests");
 
       // Set the fetched booking requests to the state
       setBookingRequests(response.data);
@@ -105,6 +105,9 @@ const BookingRequests = ({ typeofRequest }) => {
         <div>
           {bookingRequests.map((request) => (
             <div className="booking-card">
+            <p className="booking-card-content">
+                Booking Id: Electrician
+              </p>
               <p className="booking-card-content">
                 Worker Category: Electrician
               </p>
@@ -134,10 +137,10 @@ const BookingRequests = ({ typeofRequest }) => {
                     <Fab variant="extended" color="warning" aria-label="add">
                       <PendingIcon sx={{ mr: 1 }} /> Pending
                     </Fab>
-                  ) : statusOfService === "rejected" ? (
+                  ) : statusOfService === "declined" ? (
                     <Fab variant="extended" color="error" aria-label="add">
                       <ThumbDownAltRoundedIcon sx={{ mr: 1 }} />
-                      Rejected
+                      Declined
                     </Fab>
                   ) : null}
                 </div>

@@ -7,12 +7,30 @@ const bookingSchema = new Schema(
     // this is linking od two schemas maybe called as an example of foreign key
     client: { type: Schema.Types.ObjectId, ref: "Client", required: true },
     worker: { type: Schema.Types.ObjectId, ref: "Worker", required: true },
-    comment: { type: String },
+    clientName:{type:String},
+    workerName:{type:String},
+    bookingDate: { type: Date, default: Date.now },
+    visitDate: { type: Date },
+    visitTime: {
+      type: String,
+      enum: ["10AM - 12PM", "2PM - 5PM", "6PM - 9PM"],
+    },
     status: {
       type: String,
-      enum: ["pending", "accepted", "declined"],
+      enum: ["pending", "accepted", "declined","completed"],
       default: "pending",
     },
+    description: { type: String },
+    comment:{type:String},
+    serviceCategory: { type: String },
+    clientContact: { type: String },
+    workerContact: { type: String },
+    rating: {
+      type: Number,
+      min: 1,
+      max: 5,
+    },
+
   },
   { timestamps: true }
 );

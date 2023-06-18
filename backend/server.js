@@ -29,12 +29,12 @@ app.use("/api/worker",require("./routes/worker"));
 app.use("/api/detail",require("./routes/detail"));
 app.use("/api/rating",require("./routes/rating"));
 app.use("/api/client",require("./routes/client"));
-
+app.use("/api/booking",require("./routes/booking"));
 //port number allocation and listening on that port
 let port = process.env.PORT;
 if (port == null || port == "") {
-  port = 3000;
+  port = 8080;
 }
 app.listen(port, function () {
-  console.log("Server started on port 3000");
+  console.log("Server started on port 8080");
 });

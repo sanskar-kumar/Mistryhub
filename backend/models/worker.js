@@ -8,17 +8,39 @@ const workerSchema = new mongoose.Schema({
   about: String,
   email: String,
   password: String,
-  ratingSum: Number,
-  oneStar: Number,
-  twoStar: Number,
-  threeStar: Number,
-  fourStar: Number,
-  fiveStar: Number,
-  ratingAverage: Number,
-  ratingCount: Number,
+  ratingSum: {
+    type: Number,
+    default: 0,
+  },
+  ratingAverage: {
+    type: Number,
+    default: 0,
+  },
   rating: Number,
-  servicesCompleted: Number,
-  servicesAccepted: Number,
-  servicesRejected: Number,
+  servicesCompleted: {
+    type: Number,
+    default: 0,
+  },
+  oneStarRatings: {
+    type: Number,
+    default: 0,
+  },
+  twoStarRatings: {
+    type: Number,
+    default: 0,
+  },
+  threeStarRatings: {
+    type: Number,
+    default: 0,
+  },
+  fourStarRatings: {
+    type: Number,
+    default: 0,
+  },
+  fiveStarRatings: {
+    type: Number,
+    default: 0,
+  },
 });
+
 module.exports = Worker = mongoose.model("Worker", workerSchema);
