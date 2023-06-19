@@ -3,8 +3,9 @@ import Navbar from "./Navbar";
 import "./style.css";
 import { useState } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
 function ClientForm() {
+  const navigate=useNavigate();
   const [workerInfo, setWorkerInfo] = useState({
     name: "",
     email: "",
@@ -31,7 +32,7 @@ function ClientForm() {
       alert("Please enter your password");
     } else {
       axios
-        .post("http://localhost:3000/clientRegister", {
+        .post("http://localhost:8080/api/client/clientRegister", {
           name: workerInfo.name,
           contactNumber: workerInfo.contactNumber,
           address: workerInfo.address,
@@ -41,6 +42,7 @@ function ClientForm() {
         .then(function (response) {
           alert("Client added successfully");
           console.log("The response is ", response);
+          navigate('/clientLogin');
         })
         .catch(function (error) {
           console.log("The error is ", error);
@@ -133,7 +135,7 @@ function ClientForm() {
               <h2 style={{ width: "100%" }}>Submit</h2>
             </button>
           </form>
-          <div>
+          <div className='text-footer'>
             <Link to="/clientLogin" style={{ textDecoration: "none" }}>
               <h4 >Already a user</h4>
             </Link>{" "}

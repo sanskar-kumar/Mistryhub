@@ -30,6 +30,9 @@ const bookingSchema = new Schema(
       min: 1,
       max: 5,
     },
+    cost:{
+      type:Number
+    }
 
   },
   { timestamps: true }

@@ -1,8 +1,9 @@
 import "./style.css";
 import { useState } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link,  useNavigate } from "react-router-dom";
 import Navbar from "./Navbar";
+import Footer from "./Footer"
 function Form() {
   const [workerInfo, setWorkerInfo] = useState({
     name: "",
@@ -13,7 +14,11 @@ function Form() {
     location: "",
     contactNumber: "",
     about: "",
+    serviceCost: "",
+    workerImage: null,
+
   });
+  const navigate=useNavigate();
   const handleSubmit = (event) => {
     // prevents the submit button from refreshing the page
     // handleChange(event);
@@ -39,7 +44,7 @@ function Form() {
       alert("Please enter your password");
     } else {
       axios
-        .post("http://localhost:3000/api/worker/workerRegister", {
+        .post("http://localhost:8080/api/worker/workerRegister", {
           name: workerInfo.name,
           category: workerInfo.category,
           experience: workerInfo.experience,
@@ -48,9 +53,13 @@ function Form() {
           about: workerInfo.about,
           email: workerInfo.email,
           password: workerInfo.password,
+          serviceCost:workerInfo.serviceCost,
+          ...(workerInfo.workerImage && { workerImage: workerInfo.workerImage }),
+          
         })
         .then(function (response) {
           alert("Worker added successfully");
+          navigate('/workerLogin')
           console.log("The response is ", response);
         })
         .catch(function (error) {
@@ -59,21 +68,36 @@ function Form() {
       console.log(workerInfo);
       setWorkerInfo({
         name: "",
-        experience: "",
-        contactNumber: "",
-        about: "",
-        category: "",
-        location: "",
-        email: "",
-        password: "",
+      experience: "",
+      contactNumber: "",
+      about: "",
+      category: "",
+      location: "",
+      email: "",
+      password: "",
+      serviceCost: "",
+      workerImage: null,
       });
     }
   };
+  // const handleImageChange = (event) => {
+  //   const file = event.target.files[0];
+  //   const reader = new FileReader();
+  
+  //   reader.onload = () => {
+  //     const imageData = reader.result; // The base64-encoded image data
+  //     setWorkerInfo({ ...workerInfo, workerImage: imageData });
+  //   };
+  
+  //   if (file) {
+  //     reader.readAsDataURL(file);
+  //   }
+  // };
   return (
     <div>
     <Navbar/>
       <h1 style={{ textAlign: "center", margin: "2%" }}> Worker Register </h1>
-      <div className="register-form-parent" style={{ height: "1100px" }}>
+      <div className="register-form-parent">
         <div className="register-form" style={{ height: "100%" }}>
           <form onSubmit={handleSubmit}>
             <div className="input">
@@ -190,6 +214,29 @@ function Form() {
               />
             </div>
             <div className="input">
+              <label className="input-label">Service Cost</label>
+              <input
+                className="input-box"
+                type="number"
+                name="serviceCost"
+                onChange={(event) =>
+                  setWorkerInfo({ ...workerInfo, serviceCost: event.target.value })
+                }
+                value={workerInfo.serviceCost}
+              />
+            </div>
+            
+            {/* <div className="input">
+              <label className="input-label">Worker Image</label>
+              <input
+                className="input-box"
+                type="file"
+                accept="image/*"
+                name="workerImage"
+                onChange={handleImageChange}
+              />
+            </div> */}
+            <div className="input">
               <label className="input-label">About You </label>
               <input
                 className="input-box"
@@ -204,7 +251,7 @@ function Form() {
             <button type="submit" className="submit-button">
               <h2 style={{ width: "100%" }}>Submit</h2>
             </button>
-            <div className="text-footer">
+            <div className="text-footer" style={{textAlign:'center'}}>
             <Link to="/workerLogin" style={{ textDecoration: "none" }}>
             <h4 >Already a registerd worker</h4>
             </Link>
@@ -212,6 +259,7 @@ function Form() {
           </form>
         </div>
       </div>
+      <Footer/>
     </div>
   );
 }

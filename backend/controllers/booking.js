@@ -53,7 +53,7 @@ exports.updateRating = async function (req, res) {
     }
 
     // Update booking's rating
-    booking.rating = parseInt(ratingValue);
+    booking.rating = Number(ratingValue);
     await booking.save();
 
     const worker = await Worker.findById(booking.worker);
@@ -64,11 +64,12 @@ exports.updateRating = async function (req, res) {
     }
 
     // Update worker's overall rating
-    worker.ratingSum = parseFloat(worker.ratingSum) + parseInt(ratingValue);
+    worker.ratingSum = Number(worker.ratingSum) + Number(ratingValue);
     worker.ratingAverage = worker.ratingSum / worker.servicesCompleted;
+    worker.rewardPoints = Number(worker.rewardPoints) + (10 * Number(ratingValue));
 
     // Update specific rating count based on rating value
-    switch (parseInt(ratingValue)) {
+    switch (Number(ratingValue)) {
       case 1:
         worker.oneStarRatings += 1;
         break;
@@ -97,7 +98,7 @@ exports.updateRating = async function (req, res) {
 };
 
 exports.getClientBookings = async function (req, res) {
-  const { clientId, status } = req.body;
+  const { clientId, status } = req.query;
   Booking.find({ client: clientId, status })
     .then((data) => {
       res.send(data);
@@ -140,6 +141,7 @@ exports.changeBookingStatus = async function (req, res) {
     }
     if (status === "completed") {
       worker.servicesCompleted += 1;
+      worker.totalEarning+=Number(worker.serviceCost);
       await worker.save();
     }
     res.json({ message: "Booking status updated successfully" });

@@ -3,12 +3,13 @@ import axios from "axios";
 import { useState } from "react";
 import Card from "./Card";
 import { useParams } from "react-router-dom";
+import Footer from "./Footer";
 
 function Details() {
   const [workerInfo, setWorkerInfo] = useState([]);
   const handleClick = () => {
     axios
-      .get(`http://localhost:3000/api/detail/${category}`)
+      .get(`http://localhost:8080/api/detail/${category}`)
       .then(function (response) {
         setWorkerInfo(response.data);
       });
@@ -25,6 +26,7 @@ function Details() {
       {workerInfo.map((worker) => {
           return <div className="worker-card-div"> <Card props={worker} /> </div>;
         })}
+        <Footer/>
     </div>
   );
 }

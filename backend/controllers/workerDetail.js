@@ -28,7 +28,7 @@ exports.customDetail = function (req, res) {
 exports.singleDetail = function (req, res) {
   Worker.find({ _id: req.params.workerId })
     .then((data) => {
-      console.log("The data is:- " , data);
+      // console.log("The data is:- " , data);
       res.send(data);
     })
     .catch((err) => {
@@ -39,4 +39,20 @@ exports.singleDetail = function (req, res) {
     });
 };
 
+exports.getWorkerDetail = async function (req, res) {
+  try {
+    const { WorkerId } = req.body;
+    const worker = await Worker.findById(WorkerId);
+    if (!worker) {
+      return res
+        .status(500)
+        .send({ message: "No Worker found with the given Id" });
+    }
+    res.send(worker);
+  } catch (error) {
+    res
+      .status(500)
+      .json({ message: "Error foinding Worker", error: error.message });
+  }
+};
 

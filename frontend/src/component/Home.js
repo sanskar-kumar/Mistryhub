@@ -1,6 +1,5 @@
 import Navbar from "./Navbar";
 import Banner from "./Banner";
-// import Carsouel from "./Carsouel";
 import Sevices from "./Services";
 import Faq from "./Faq";
 import Search from "./Search";
@@ -12,7 +11,6 @@ function Home() {
     <div>
       <Navbar />
       <Banner/>
-      {/* <Carsouel /> */}
       <Search/>
       <Sevices />
       <About/>

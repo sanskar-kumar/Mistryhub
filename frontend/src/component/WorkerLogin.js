@@ -31,7 +31,7 @@ function WorkerLogin() {
     }
     else {
       // console.log(workerInfo.password);
-    axios.post('http://localhost:3000/api/worker/workerLogin', {
+    axios.post('http://localhost:8080/api/worker/workerLogin', {
       email: workerInfo.email,
       password: workerInfo.password
     })
@@ -101,7 +101,7 @@ function WorkerLogin() {
           </div>
         </form>
         <br/>
-        <div className="text-footer"><Link to="/workerRegister" style={{textDecoration:'none'}}><h3 >Not a worker Register</h3></Link>  </div>
+        <div className="text-footer"><Link to="/workerRegister" style={{textDecoration:'none'}}><h3>Not a registered worker</h3></Link>  </div>
       </div>
     </div>
     </div>

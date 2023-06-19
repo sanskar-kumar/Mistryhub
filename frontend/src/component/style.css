@@ -29,9 +29,7 @@
   background-size: cover;
 }
 .register-form {
-  padding-top: 5%;
-  padding-left: 10%;
-  padding-right: 10%;
+  padding:10%;
   background: rgba(255, 255, 255, 0.47);
   border-radius: 16px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
@@ -152,5 +150,6 @@ select {
   -webkit-backdrop-filter: blur(9.9px);
 }
 .text-footer{
-  display: flex;
+  margin: 2%;
+  text-align: center;
 }

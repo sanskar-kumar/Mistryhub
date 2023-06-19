@@ -1,5 +1,7 @@
-import * as React from "react";
+import React from "react";
 import axios from "axios";
+import "./card.css"; // Import the CSS file
+
 import Rating from "@mui/material/Rating";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
@@ -21,8 +23,8 @@ function Card(props) {
 
   const [open, setOpen] = React.useState(false);
   const handleClickOpen = () => {
-    if(clientId!=null) setOpen(true);
-    else{
+    if (clientId != null) setOpen(true);
+    else {
       alert("Please Login first to book service");
       navigate("/clientLogin");
     }
@@ -30,7 +32,6 @@ function Card(props) {
   const handleClose = () => {
     setOpen(false);
   };
-
 
   const [serviceDetail, setServiceDetail] = React.useState({
     description: "",
@@ -41,22 +42,19 @@ function Card(props) {
     clientId: clientId,
   });
 
-  
   const handleSubmit = () => {
     console.log(clientId);
-    if(clientId===null){
-      alert('Please Login First');
+    if (clientId === null) {
+      alert("Please Login First");
       // navigate to client Login page
       navigate("/clientLogin");
-    }
-    else{
-      //call api to post the detail 
+    } else {
+      //call api to post the detail
       //check if the token is still valid
       //check if the required fields are entered
 
       console.log(serviceDetail);
     }
-    
   };
   const handleTimeChange = (event) => {
     setServiceDetail({
@@ -64,30 +62,11 @@ function Card(props) {
       visitTime: event.target.value,
     });
   };
-  // console.log(serviceDetail.description);
-  // const [value, setValue] = useState<number | null>(2);
+
   return (
-    <div
-      style={{
-        backgroundColor: "#A7ECEE",
-        borderRadius: "10px",
-        padding: "20px",
-        marginBottom: "20px",
-        boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
-        width: "50%", // Adjust the width as per your requirements
-        margin: "0 auto", // Center the card horizontally
-      }}
-    >
-      <div
-        style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-          marginBottom: "10px",
-        }}
-        className="worker_details"
-      >
-        <div style={{ flex: "1" }} className="worker_general_details">
+    <div className="card">
+      <div className="worker_details">
+        <div className="worker_general_details">
           <h4>
             <strong>Name </strong>: {props.props.name}
           </h4>
@@ -101,25 +80,13 @@ function Card(props) {
           <img
             src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS5HIcfODFMZAUv9voGR1uLyYZsE4E5AmAaDA&usqp=CAU"
             alt="worker_image"
-            style={{
-              width: "150px",
-              height: "150px",
-              objectFit: "cover",
-              borderRadius: "50%",
-            }}
+            className="worker_image"
           />
         </div>
       </div>
 
-      <p
-        style={{ fontSize: "25px", fontStyle: "italic", marginBottom: "20px" }}
-      >
-        {props.props.about}
-      </p>
-      <div
-        className="rating-book"
-        style={{ display: "flex", justifyContent: "space-between" }}
-      >
+      <p className="worker_description">{props.props.about}</p>
+      <div className="rating-book">
         <div className="rating">
           <Rating
             name="half-rating-read"
@@ -130,7 +97,12 @@ function Card(props) {
           />
         </div>
         <div className="book-service">
-          <Button variant="contained" size="large" onClick={handleClickOpen}>
+          <Button
+            variant="contained"
+            size="large"
+            onClick={handleClickOpen}
+            className="book_button"
+          >
             Book Service
           </Button>
           <Dialog fullWidth maxWidth="md" open={open} onClose={handleClose}>

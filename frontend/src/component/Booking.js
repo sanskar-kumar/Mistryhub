@@ -55,77 +55,40 @@ IconContainer.propTypes = {
   value: PropTypes.number.isRequired,
 };
 
-const BookingRequests = ({ typeofRequest }) => {
-  const [bookingRequests, setBookingRequests] = useState([
-    {
-      id: "1",
-      date: "01-06-2022",
-      service: "Painting",
-    },
-    {
-      id: "1",
-      date: "01-06-2022",
-      service: "Painting",
-    },
-    {
-      id: "1",
-      date: "01-06-2022",
-      service: "Painting",
-    },
-    {
-      id: "1",
-      date: "01-06-2022",
-      service: "Painting",
-    },
-  ]);
-
-  useEffect(() => {
-    fetchBookingRequests();
-  }, []);
-
-  const fetchBookingRequests = async () => {
-    try {
-      // Make an API request to fetch booking requests
-      const response = await axios.get("/api/booking/booking-requests");
-
-      // Set the fetched booking requests to the state
-      setBookingRequests(response.data);
-    } catch (error) {
-      console.error("Error fetching booking requests:", error);
-    }
-  };
+const BookingRequests = ({ typeofRequest,bookingDetails }) => {
   const statusOfService = "pending";
   const [ratingValue, setValue] = useState(0);
   const [hover, setHover] = React.useState(-1);
+  // console.log(bookingDetails);
   return (
     <div>
       <h2 style={{ textAlign: "center" }}>{typeofRequest}</h2>
 
-      {bookingRequests.length > 0 ? (
+      {bookingDetails && bookingDetails.length > 0 ? (
         <div>
-          {bookingRequests.map((request) => (
+          {bookingDetails.map((request) => (
             <div className="booking-card">
             <p className="booking-card-content">
-                Booking Id: Electrician
+                Booking Id: {request._id};
               </p>
               <p className="booking-card-content">
-                Worker Category: Electrician
+                Worker Category: {request.serviceCategory};
               </p>
               <p className="booking-card-content">Name: Arthur</p>
               <p className="booking-card-content">
-                Booking Date: {request.date}
+                Booking Date: {request.bookingDate};
               </p>
               <p className="booking-card-content">
-                Visiting Date: {request.date}
+                Visiting Date: {request.visitDate};
               </p>
               <p className="booking-card-content">
-                Visiting Time: {request.date}
+                Visiting Time: {request.visitTime};
               </p>
               <p className="booking-card-content">
-                Contact Number: {request.date}
+                Contact Number: {request.workerContact};
               </p>
               <p className="booking-card-content">
-                Service Description: I need AC repairing
+                Service Description: {request.description};
               </p>
               {typeofRequest === "Ongoing Services" ? (
                 <div style={{ textAlign: "center" }}>

@@ -1,0 +1,76 @@
+/* Card.css */
+
+.card {
+  /* Card styles */
+  background: linear-gradient(135deg, #e3fdfd, #cbf1f5, #a6e3e9, #71c9ce);
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 50%;
+  margin: 0 auto;
+  margin-top: 2%;
+  margin-bottom: 2%;
+}
+
+.worker_details {
+  /* Worker details styles */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.worker_general_details {
+  /* Worker general details styles */
+  flex: 1;
+}
+
+.worker_image img {
+  /* Worker image styles */
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.rating-book {
+  /* Rating and book section styles */
+  display: flex;
+  justify-content: space-between;
+}
+
+.rating {
+  /* Rating styles */
+  /* Add your rating styles */
+}
+
+.book-service button {
+  background-color: #b2ebef;
+  color: #000;
+  outline: #0000;
+  border-image-slice: 1;
+  border-radius: 10px;
+  padding: 10px 20px;
+  margin-left: 10px;
+  font-size: 16px;
+  cursor: pointer;
+}
+.book-service button:hover {
+  background-color: #00adb5;
+  color: #fff;
+  border-color: #00adb5;
+}
+/* Media Query for Small Screens */
+@media (max-width: 768px) {
+  .card {
+    /* Adjust the card width for small screens */
+    width: 80%;
+  }
+
+  .worker_image img {
+    /* Adjust the worker image size for small screens */
+    width: 100px;
+    height: 100px;
+  }
+}

@@ -35,8 +35,6 @@
   .worker-button {
     background-color: transparent;
     color: #000;
-    /* border: 2px solid transparent; */
-    /* border-image: linear-gradient(135deg, #e3fdfd, #cbf1f5, #a6e3e9, #71c9ce) 1; */
     outline: #71c9ce;
     border-image-slice: 1;
     border-radius: 10px;

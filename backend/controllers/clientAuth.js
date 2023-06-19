@@ -106,35 +106,39 @@ exports.clientLogin = function (req, res) {
   Client.findOne({ email: req.body.email })
     .then((client) => {
       if (client) {
-        //if user login is successful, generate a JWT token for the user with a secret key
-        //checking the encrypted password by decrypting it.
+        // If user login is successful, compare the encrypted password
         bcrypt.compare(req.body.password, client.password, (err, result) => {
           if (err) {
             res.status(401).json({ error: "Authentication has failed!" });
           } else if (result) {
+            // Generate JWT token for the user
             jwt.sign(
               { client },
               "privateKeyClientMistryHub",
               { expiresIn: "1h" },
               (err, token) => {
                 if (err) {
-                  console.log("the jwt error is", err);
+                  console.log("The JWT error is", err);
                 } else {
-                  // console.log("the token is",token);
-                  const clientId=client._id;
-                  res.send({token,clientId});
-                  console.log("the token is", token);
+                  const clientId = client._id;
+                  const clientToken = token;
+                  res.send({ clientToken, clientId });
+                  // console.log("The token is", token);
                 }
               }
             );
+          } else {
+            res.status(401).json({ error: "Incorrect password!" });
           }
         });
       } else {
-        res.send("No client found");
+        res.status(404).json({ error: "No client found!" });
       }
     })
     .catch((err) => {
-      console.log("The error in controller is:", err);
+      console.log("The error in the controller is:", err);
       res.sendStatus(500); // or handle the error in an appropriate way
-    }); 
+    });
 };
+
+ 
