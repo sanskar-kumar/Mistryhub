@@ -11,11 +11,8 @@ exports.login = function (req, res) {
       }
       bcrypt.compare(req.body.password, worker.password, (err, result) => {
         if (err) {
-          // console.log(req.body.password, worker.password)
           console.log("Authentication failed with error:- ", err);
-        }
-        //result is a boolean value
-        if (result) {
+        } else if (result) {
           jwt.sign(
             { worker },
             "privateKeyWorkerMistryHub",
@@ -23,21 +20,21 @@ exports.login = function (req, res) {
             (err, token) => {
               if (err) {
                 console.log("The JWT error is", err);
-                return res.sendStatus(500); // or handle the error in an appropriate way
+                return res.sendStatus(500);
               }
-              const workerId=worker._id;
-              res.send({workerId,token});
-              // console.log("The token is", token);
+              const workerId = worker._id;
+              const workerToken = token;
+              res.send({ workerToken, workerId });
             }
           );
         } else {
-          res.send("No worker found");
+          res.status(401).json({ error: "Incorrect password!" });
         }
       });
     })
     .catch((err) => {
       console.log("The error in controller is:", err);
-      res.sendStatus(500); // or handle the error in an appropriate way
+      res.sendStatus(500);
     });
 };
 
@@ -51,6 +48,7 @@ exports.register = function (req, res) {
     about,
     email,
     password,
+    serviceCost,
   } = req.body;
 
   Worker.findOne({ email })
@@ -72,21 +70,21 @@ exports.register = function (req, res) {
           contactNumber,
           about,
           email,
-          password: hash
+          password: hash,
+          serviceCost,
         });
 
         newWorker
           .save()
           .then((data) => {
             // Send registration success email
-            sendRegistrationEmail(name, email,category);
+            sendRegistrationEmail(name, email, category);
             res.send(data);
           })
           .catch((err) => {
             res.status(500).send({
               message:
-                err.message ||
-                "Some error occurred while creating the worker.",
+                err.message || "Some error occurred while creating the worker.",
             });
           });
       });
@@ -96,7 +94,7 @@ exports.register = function (req, res) {
     });
 };
 
-function sendRegistrationEmail(name, email,category) {
+function sendRegistrationEmail(name, email, category) {
   const transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {

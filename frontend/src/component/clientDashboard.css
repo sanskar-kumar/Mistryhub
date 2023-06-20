@@ -77,7 +77,7 @@ h2 {
   border-radius: 10px;
 }
 .booking-card-content{
-  color:#EEEEEE;
+  color:#000000;
   font-size: 2 rem;
 }
 
@@ -108,8 +108,8 @@ h2 {
 }
 
 .profile-pic {
-  width: 100%;
-  height: auto;
+  width: 150px;
+  height: 150px;
   border-radius: 50%;
   object-fit: cover;
   margin: 0 auto;
@@ -118,17 +118,6 @@ h2 {
 .profile-name {
   text-align: center;
   margin-top: 20px;
-}
-.profile-info label {
-  display: inline-block;
-  width: 80px;
-  margin-right: 10px;
-  font-weight: bold;
-}
-
-.profile-info p {
-  display: inline-block;
-  margin: 0;
 }
 
 .profile-details {
@@ -139,18 +128,24 @@ h2 {
 
 .profile-info {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   margin-bottom: 10px;
 }
 
 .profile-info label {
-  font-weight: bold;
+  display: inline-block;
+  width: 100px;
   margin-right: 10px;
+  font-weight: bold;
+  align-self: flex-start;
 }
 
 .profile-info p {
+  display: inline-block;
   margin: 0;
 }
+
+
 .money-earned{
   background-color: #00ADB5;
   border-radius: 20px;

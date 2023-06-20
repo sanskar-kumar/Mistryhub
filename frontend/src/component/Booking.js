@@ -14,8 +14,8 @@ import SentimentDissatisfiedIcon from "@mui/icons-material/SentimentDissatisfied
 import SentimentSatisfiedIcon from "@mui/icons-material/SentimentSatisfied";
 import SentimentSatisfiedAltIcon from "@mui/icons-material/SentimentSatisfiedAltOutlined";
 import SentimentVerySatisfiedIcon from "@mui/icons-material/SentimentVerySatisfied";
-import CheckIcon from '@mui/icons-material/Check';
-import ClearIcon from '@mui/icons-material/Clear';
+import CheckIcon from "@mui/icons-material/Check";
+import ClearIcon from "@mui/icons-material/Clear";
 
 const StyledRating = styled(Rating)(({ theme }) => ({
   "& .MuiRating-iconEmpty .MuiSvgIcon-root": {
@@ -55,10 +55,16 @@ IconContainer.propTypes = {
   value: PropTypes.number.isRequired,
 };
 
-const BookingRequests = ({ typeofRequest,bookingDetails }) => {
-  const statusOfService = "pending";
+const BookingRequests = ({
+  typeofRequest,
+  bookingDetails,
+  isWorker,
+  handleBookingStatusChange,
+}) => {
+  // console.log(isWorker);
   const [ratingValue, setValue] = useState(0);
   const [hover, setHover] = React.useState(-1);
+
   // console.log(bookingDetails);
   return (
     <div>
@@ -68,19 +74,38 @@ const BookingRequests = ({ typeofRequest,bookingDetails }) => {
         <div>
           {bookingDetails.map((request) => (
             <div className="booking-card">
-            <p className="booking-card-content">
-                Booking Id: {request._id};
-              </p>
+              <p className="booking-card-content">Booking Id: {request._id};</p>
               <p className="booking-card-content">
                 Worker Category: {request.serviceCategory};
               </p>
-              <p className="booking-card-content">Name: Arthur</p>
               <p className="booking-card-content">
-                Booking Date: {request.bookingDate};
+                Client Name: {request.clientName}
               </p>
               <p className="booking-card-content">
-                Visiting Date: {request.visitDate};
+                Worker Name: {request.workerName}
               </p>
+              <p className="booking-card-content">
+                Booking Date:{" "}
+                {new Date(request.bookingDate).toLocaleDateString(undefined, {
+                  weekday: "long",
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric",
+                })}
+              </p>
+              <p className="booking-card-content">
+                Visiting Address: {request.address};
+              </p>
+              <p className="booking-card-content">
+                Visiting Date:{" "}
+                {new Date(request.visitDate).toLocaleDateString(undefined, {
+                  weekday: "long",
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric",
+                })}
+              </p>
+
               <p className="booking-card-content">
                 Visiting Time: {request.visitTime};
               </p>
@@ -92,15 +117,35 @@ const BookingRequests = ({ typeofRequest,bookingDetails }) => {
               </p>
               {typeofRequest === "Ongoing Services" ? (
                 <div style={{ textAlign: "center" }}>
-                  {statusOfService === "accepted" ? (
-                    <Fab variant="extended" color="success" aria-label="add">
-                      <DoneIcon sx={{ mr: 1 }} /> Accepted
-                    </Fab>
-                  ) : statusOfService === "pending" ? (
+                  {request.status === "accepted" ? (
+                    <>
+                      <Fab
+                        variant="extended"
+                        color="warning"
+                        aria-label="add"
+                        sx={{ mr: 1 }}
+                      >
+                        <PendingIcon sx={{ mr: 1 }} /> Pending
+                      </Fab>
+                      {isWorker === true ? (
+                        <Fab
+                          variant="extended"
+                          color="success"
+                          aria-label="add"
+                          sx={{ ml: 1 }}
+                          onClick={() =>
+                            handleBookingStatusChange(request._id, "completed")
+                          }
+                        >
+                          <DoneIcon sx={{ mr: 1 }} /> Mark as Complete
+                        </Fab>
+                      ) : null}
+                    </>
+                  ) : request.status === "pending" ? (
                     <Fab variant="extended" color="warning" aria-label="add">
                       <PendingIcon sx={{ mr: 1 }} /> Pending
                     </Fab>
-                  ) : statusOfService === "declined" ? (
+                  ) : request.status === "declined" ? (
                     <Fab variant="extended" color="error" aria-label="add">
                       <ThumbDownAltRoundedIcon sx={{ mr: 1 }} />
                       Declined
@@ -127,22 +172,40 @@ const BookingRequests = ({ typeofRequest,bookingDetails }) => {
                   />
                   <div>{hover !== -1 ? customIcons[hover].label : null}</div>
                 </div>
-              ) : typeofRequest ===
-                "New Requests" ? // Your New Requests component here
+              ) : typeofRequest === "New Requests" ? ( // Your New Requests component here
                 <div style={{ textAlign: "center" }}>
-                    <Fab  variant="extended" color="success" aria-label="add" sx={{ mr: 1 }}>
-                      <CheckIcon sx={{ mr: 1 }} /> Accept
-                    </Fab>
-                    <Fab variant="extended" color="error" aria-label="add" sx={{ ml: 1 }}>
-                      <ClearIcon sx={{ mr: 1 }} />
-                      Reject
-                    </Fab>
-                </div> : null}
+                  <Fab
+                    variant="extended"
+                    color="success"
+                    aria-label="add"
+                    sx={{ mr: 1 }}
+                    onClick={() =>
+                      handleBookingStatusChange(request._id, "accepted")
+                    }
+                  >
+                    <CheckIcon sx={{ mr: 1 }} /> Accept
+                  </Fab>
+                  <Fab
+                    variant="extended"
+                    color="error"
+                    aria-label="add"
+                    sx={{ ml: 1 }}
+                    onClick={() =>
+                      handleBookingStatusChange(request._id, "declined")
+                    }
+                  >
+                    <ClearIcon sx={{ mr: 1 }} />
+                    Reject
+                  </Fab>
+                </div>
+              ) : null}
             </div>
           ))}
         </div>
       ) : (
-        <p>No booking requests found.</p>
+        <p style={{ textAlign: "center", fontSize: "3em" }}>
+          No {typeofRequest} found.
+        </p>
       )}
     </div>
   );

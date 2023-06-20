@@ -140,5 +140,3 @@ exports.clientLogin = function (req, res) {
       res.sendStatus(500); // or handle the error in an appropriate way
     });
 };
-
- 

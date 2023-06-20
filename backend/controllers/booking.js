@@ -29,6 +29,7 @@ exports.createBooking = async function (req, res) {
       workerContact: worker.contactNumber,
       clientName: client.name,
       workerName: worker.name,
+      address:client.address,
     });
 
     // Save the booking in the database
@@ -66,7 +67,8 @@ exports.updateRating = async function (req, res) {
     // Update worker's overall rating
     worker.ratingSum = Number(worker.ratingSum) + Number(ratingValue);
     worker.ratingAverage = worker.ratingSum / worker.servicesCompleted;
-    worker.rewardPoints = Number(worker.rewardPoints) + (10 * Number(ratingValue));
+    worker.rewardPoints =
+      Number(worker.rewardPoints) + 10 * Number(ratingValue);
 
     // Update specific rating count based on rating value
     switch (Number(ratingValue)) {
@@ -111,7 +113,7 @@ exports.getClientBookings = async function (req, res) {
     });
 };
 exports.getWorkerBookings = async function (req, res) {
-  const { workerId, status } = req.body;
+  const { workerId, status } = req.query;
   Booking.find({ worker: workerId, status })
     .then((data) => {
       res.send(data);
@@ -125,12 +127,14 @@ exports.getWorkerBookings = async function (req, res) {
 };
 exports.changeBookingStatus = async function (req, res) {
   try {
-    const { bookingId, status } = req.body;
+    const { bookingId, status } = req.query;
     const booking = await Booking.findById(bookingId);
-    if(!booking){
-      res.return.status(500).send({message:"No booking found with the given booking id"})
+    if (!booking) {
+      res.return
+        .status(500)
+        .send({ message: "No booking found with the given booking id" });
     }
-    booking.status=status;
+    booking.status = status;
     await booking.save();
     //update the services count now in the worker schema
     const worker = await Worker.findById(booking.worker);
@@ -140,15 +144,19 @@ exports.changeBookingStatus = async function (req, res) {
         .json({ message: "No worker found for the booking" });
     }
     if (status === "completed") {
+      if (!isNaN(worker.serviceCost)) {
+        // console.error("Invalid service cost:", worker.serviceCost);
+        // return res.status(400).json({ message: "Invalid service cost" });
+        worker.totalEarning += Number(worker.serviceCost);
+      }
       worker.servicesCompleted += 1;
-      worker.totalEarning+=Number(worker.serviceCost);
+
       await worker.save();
     }
     res.json({ message: "Booking status updated successfully" });
-
   } catch (error) {
     res
-    .status(500)
-    .json({ message: "Error updating status", error: error.message });
+      .status(500)
+      .json({ message: "Error updating status", error: error.message });
   }
 };

@@ -52,7 +52,7 @@ exports.getWorkerDetail = async function (req, res) {
   } catch (error) {
     res
       .status(500)
-      .json({ message: "Error foinding Worker", error: error.message });
+      .json({ message: "Error finding Worker", error: error.message });
   }
 };
 

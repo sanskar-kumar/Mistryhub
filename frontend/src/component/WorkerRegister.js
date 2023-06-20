@@ -63,6 +63,7 @@ function Form() {
           console.log("The response is ", response);
         })
         .catch(function (error) {
+          alert("Worker exists with the same email")
           console.log("The error is ", error);
         });
       console.log(workerInfo);

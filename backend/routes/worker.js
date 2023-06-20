@@ -8,6 +8,6 @@ const {checkToken} =require("../middleware/workerAuthMiddleware");
 
 router.post("/workerLogin", login);
 router.post("/workerRegister",register);
-router.get("./getWorkerDetail",checkToken,getWorkerDetail);
+router.get("/getWorkerDetail",checkToken,getWorkerDetail);
 
 module.exports = router;

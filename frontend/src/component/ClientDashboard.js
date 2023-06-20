@@ -5,10 +5,9 @@ import Navbar from "./Navbar";
 import Form from "./UpdateForm";
 import "./clientDashboard.css";
 import ClientBookings from "./Booking";
-import ViewProfile from "./ViewProfile";
+import ViewProfile from "./UserProfile";
 
-
-const Sidebar = ({ handleOptionClick, selectedOption }) => {
+const Sidebar = ({ handleOptionClick, selectedOption ,clientDetails}) => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -20,6 +19,14 @@ const Sidebar = ({ handleOptionClick, selectedOption }) => {
 
   return (
     <div className="sidebar">
+      <div style={{ textAlign: "center", margin: "2%", padding: "5%" }}>
+        <img
+          src="https://w0.peakpx.com/wallpaper/214/949/HD-wallpaper-thomas-shelby-fondo-de-pantalla.jpg"
+          alt="User Profile"
+          className="profile-pic"
+        />
+        <h4 className="profile-name"> Welcome {clientDetails.name}</h4>
+      </div>
       <ul>
         <li
           className={
@@ -74,8 +81,8 @@ const Sidebar = ({ handleOptionClick, selectedOption }) => {
   );
 };
 
-const Content = ({ selectedOption,clientDetails }) => {
-  const clientId=localStorage.getItem('clientId');
+const Content = ({ selectedOption, clientDetails }) => {
+  const clientId = localStorage.getItem("clientId");
   const [clientBookings, setClientBookings] = useState([]);
   const fetchClientBookings = async (status) => {
     try {
@@ -108,17 +115,24 @@ const Content = ({ selectedOption,clientDetails }) => {
   return (
     <div className="content">
       {selectedOption === "Option 1" ? (
-        <ClientBookings typeofRequest={"Ongoing Services"} bookingDetails={clientBookings}/>
+        <ClientBookings
+          typeofRequest={"Ongoing Services"}
+          bookingDetails={clientBookings}
+        />
       ) : selectedOption === "Option 6" ? (
-        <ClientBookings typeofRequest={"Pending Requests"} bookingDetails={clientBookings} />
+        <ClientBookings
+          typeofRequest={"Pending Requests"}
+          bookingDetails={clientBookings}
+        />
       ) : selectedOption === "Option 2" ? (
-        <ClientBookings typeofRequest={"Completed Services"} bookingDetails={clientBookings} />
+        <ClientBookings
+          typeofRequest={"Completed Services"}
+          bookingDetails={clientBookings}
+        />
       ) : selectedOption === "Option 3" ? (
         <Form />
       ) : selectedOption === "Option 4" ? (
-        <ViewProfile
-        detail={clientDetails}
-         />
+        <ViewProfile detail={clientDetails} />
       ) : null}
     </div>
   );
@@ -132,7 +146,6 @@ function ClientDashboard() {
   const [selectedOption, setSelectedOption] = useState("Option 4");
   const [clientDetails, setClientDetails] = useState({});
 
-  
   const fetchClientDetails = async () => {
     try {
       const response = await axios.get(
@@ -144,21 +157,18 @@ function ClientDashboard() {
       setClientDetails(response.data.authorizedData.client);
     } catch (error) {
       console.log("Error fetching client details:", error);
-      navigate('/clientLogin')
+      navigate("/clientLogin");
     }
   };
 
-  
-  
-  
   useEffect(() => {
     if (clientToken === null || isClientLoggedIn === null) {
-      alert('Session Expired');
+      alert("Session Expired");
       navigate("/clientLogin");
     } else {
       fetchClientDetails();
     }
-  }, [[isClientLoggedIn, clientToken,fetchClientDetails]]);
+  }, [[isClientLoggedIn, clientToken, fetchClientDetails]]);
 
   const handleOptionClick = (option) => {
     setSelectedOption(option);
@@ -171,12 +181,15 @@ function ClientDashboard() {
         <Sidebar
           handleOptionClick={handleOptionClick}
           selectedOption={selectedOption}
+          clientDetails={clientDetails}
         />
-        <Content selectedOption={selectedOption} clientDetails={clientDetails}/>
+        <Content
+          selectedOption={selectedOption}
+          clientDetails={clientDetails}
+        />
       </div>
     </div>
   );
 }
-
 
 export default ClientDashboard;

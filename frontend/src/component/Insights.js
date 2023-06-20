@@ -1,9 +1,11 @@
 import { Bar } from "react-chartjs-2";
 import Chart from "chart.js/auto";
 export default function BarChart(props) {
+  const { detail } = props;
+  const { ratingAverage,servicesCompleted,oneStarRatings,twoStarRatings,threeStarRatings,fourStarRatings,fiveStarRatings,totalEarning,rewardPoints } = detail;
   // console.log("The props are ", props.props.fiveStar);
   // var ratings=[props.props.fiveStar,props.props.fourStar,props.props.threeStar,props.props.twoStar,props.props.oneStar];
-  var ratings = [70, 45, 30, 40, 50];
+  var ratings = [oneStarRatings,twoStarRatings,threeStarRatings,fourStarRatings,fiveStarRatings];
   // console.log("The ratings are ", ratings);
   const data = {
     labels: ["5⭐", "4⭐", "3⭐", "2⭐", "1⭐"],
@@ -42,7 +44,7 @@ export default function BarChart(props) {
             fontFamily: "monospace",
           }}
         >
-          ₹3000
+          ₹{totalEarning}
         </h1>
       </div>
       <div className="money-earned">
@@ -54,7 +56,7 @@ export default function BarChart(props) {
             fontFamily: "monospace",
           }}
         >
-          50
+          {servicesCompleted}
         </h1>
       </div>
       <div className="money-earned">
@@ -66,7 +68,7 @@ export default function BarChart(props) {
             fontFamily: "monospace",
           }}
         >
-        2700
+        {rewardPoints}
           {/* average rating * 10 */}
         </h1>
       </div>

@@ -32,7 +32,8 @@ const bookingSchema = new Schema(
     },
     cost:{
       type:Number
-    }
+    },
+    address:String,
 
   },
   { timestamps: true }
