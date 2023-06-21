@@ -2,10 +2,26 @@ import { Bar } from "react-chartjs-2";
 import Chart from "chart.js/auto";
 export default function BarChart(props) {
   const { detail } = props;
-  const { ratingAverage,servicesCompleted,oneStarRatings,twoStarRatings,threeStarRatings,fourStarRatings,fiveStarRatings,totalEarning,rewardPoints } = detail;
+  const {
+    ratingAverage,
+    servicesCompleted,
+    oneStarRatings,
+    twoStarRatings,
+    threeStarRatings,
+    fourStarRatings,
+    fiveStarRatings,
+    totalEarning,
+    rewardPoints,
+  } = detail;
   // console.log("The props are ", props.props.fiveStar);
   // var ratings=[props.props.fiveStar,props.props.fourStar,props.props.threeStar,props.props.twoStar,props.props.oneStar];
-  var ratings = [oneStarRatings,twoStarRatings,threeStarRatings,fourStarRatings,fiveStarRatings];
+  var ratings = [
+    oneStarRatings,
+    twoStarRatings,
+    threeStarRatings,
+    fourStarRatings,
+    fiveStarRatings,
+  ];
   // console.log("The ratings are ", ratings);
   const data = {
     labels: ["5⭐", "4⭐", "3⭐", "2⭐", "1⭐"],
@@ -68,12 +84,18 @@ export default function BarChart(props) {
             fontFamily: "monospace",
           }}
         >
-        {rewardPoints}
+          {rewardPoints}
           {/* average rating * 10 */}
         </h1>
       </div>
       <h2
-        style={{ textAlign: "center",margin: "2%",marginTop:'5%', fontFamily: "monospace",fontWeight:'bold' }}
+        style={{
+          textAlign: "center",
+          margin: "2%",
+          marginTop: "5%",
+          fontFamily: "monospace",
+          fontWeight: "bold",
+        }}
       >
         Rating Description
       </h2>
@@ -87,45 +109,44 @@ export default function BarChart(props) {
         }}
       >
         <Bar
-  data={data}
-  width={100}
-  height={100}
-  options={{
-    scales: {
-      y: {
-        ticks: {
-          font: {
-            size: 25, // This changes the font size
-          },
-        },
-      },
-      x: {
-        ticks: {
-          font: {
-            size: 25, // This changes the font size
-          },
-        },
-        title: {
-          display: true,
-          text: 'Hunt for More Stars for exciting rewards', // Replace with your desired x-axis label
-          font: {
-            size: 25, // This changes the font size of the x-axis label
-          },
-        },
-      },
-    },
-    plugins: {
-      title: {
-        display: true,
-        text: 'Rating Chart', // Replace with your desired chart title
-        font: {
-          size: 30, // This changes the font size of the chart title
-        },
-      },
-    },
-  }}
-/>
-
+          data={data}
+          width={100}
+          height={100}
+          options={{
+            scales: {
+              y: {
+                ticks: {
+                  font: {
+                    size: 25, // This changes the font size
+                  },
+                },
+              },
+              x: {
+                ticks: {
+                  font: {
+                    size: 25, // This changes the font size
+                  },
+                },
+                title: {
+                  display: true,
+                  text: "Hunt for More Stars for exciting rewards", // Replace with your desired x-axis label
+                  font: {
+                    size: 25, // This changes the font size of the x-axis label
+                  },
+                },
+              },
+            },
+            plugins: {
+              title: {
+                display: true,
+                text: "Rating Chart", // Replace with your desired chart title
+                font: {
+                  size: 30, // This changes the font size of the chart title
+                },
+              },
+            },
+          }}
+        />
       </div>
     </div>
   );

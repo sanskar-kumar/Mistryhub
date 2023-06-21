@@ -56,3 +56,29 @@ exports.getWorkerDetail = async function (req, res) {
   }
 };
 
+exports.updateWorkerDetail=async (req,res) => {
+  try {
+    const {name,contactNumber,about,experience,location,serviceCost,workerId}=req.query;
+    const worker=await Worker.findById(workerId);
+    if (!worker) {
+      return res
+        .status(404)
+        .json({ message: "No worker found with the provided ID" });
+    }
+    //update workers profile
+    worker.name=name;
+    worker.contactNumber=contactNumber;
+    worker.about=about;
+    worker.experience=experience;
+    worker.location=location;
+    worker.serviceCost=Number(serviceCost);
+    await worker.save();
+    res.json({message: "Worker details updated successfully"});
+
+  } catch (error) {
+    res
+      .status(500)
+      .json({ message: "Error updating worker", error: error.message });
+  }
+}
+

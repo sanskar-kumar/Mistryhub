@@ -13,7 +13,7 @@ const bookingSchema = new Schema(
     visitDate: { type: Date },
     visitTime: {
       type: String,
-      enum: ["10AM - 12PM", "2PM - 5PM", "6PM - 9PM"],
+      // enum: ["10AM - 12PM", "2PM - 5PM", "6PM - 9PM"],
     },
     status: {
       type: String,
@@ -27,7 +27,8 @@ const bookingSchema = new Schema(
     workerContact: { type: String },
     rating: {
       type: Number,
-      min: 1,
+      default: 0,
+      min: 0,
       max: 5,
     },
     cost:{

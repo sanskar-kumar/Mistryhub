@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Navbar from "./Navbar";
 import Form from "./UpdateForm";
 import "./clientDashboard.css";
@@ -8,7 +8,7 @@ import ClientBookings from "./Booking";
 import WorkerProfile from "./WorkerProfile";
 import Insights from "./Insights";
 
-const Sidebar = ({ handleOptionClick, selectedOption,workerDetails}) => {
+const Sidebar = ({ handleOptionClick, selectedOption, workerDetails }) => {
   //   console.log(selectedOption);
   const navigate = useNavigate();
 
@@ -92,9 +92,17 @@ const Sidebar = ({ handleOptionClick, selectedOption,workerDetails}) => {
   );
 };
 
-const Content = ({ selectedOption, workerDetails,fetchWorkerBookings,workerBookings,handleBookingStatusChange }) => {
+const Content = ({
+  selectedOption,
+  workerDetails,
+  fetchWorkerBookings,
+  workerBookings,
+  handleBookingStatusChange,
+  updateWorkerDetail,
+  fetchWorkerDetails,
+}) => {
   const workerId = localStorage.getItem("workerId");
-  
+
   // const [workerBookings, setWorkerBookings] = useState([]);
   useEffect(() => {
     if (selectedOption === "Option 1") {
@@ -122,11 +130,12 @@ const Content = ({ selectedOption, workerDetails,fetchWorkerBookings,workerBooki
           isWorker={true}
         />
       ) : selectedOption === "Option 3" ? (
-        <Form />
-      ) : selectedOption === "Option 4" ? (
-        <WorkerProfile 
-          detail={workerDetails}
+        <Form
+          workerDetails={workerDetails}
+          updateWorkerDetail={updateWorkerDetail}
         />
+      ) : selectedOption === "Option 4" ? (
+        <WorkerProfile />
       ) : selectedOption === "Option 5" ? (
         <ClientBookings
           typeofRequest={"New Requests"}
@@ -135,9 +144,7 @@ const Content = ({ selectedOption, workerDetails,fetchWorkerBookings,workerBooki
           handleBookingStatusChange={handleBookingStatusChange}
         />
       ) : selectedOption === "Option 6" ? (
-        <Insights
-        detail={workerDetails}
-         />
+        <Insights detail={workerDetails} />
       ) : null}
     </div>
   );
@@ -191,7 +198,7 @@ function WorkerDashboard() {
       // console.log(bookingId, status);
       const response = await axios.post(
         "http://localhost:8080/api/booking/changeBookingStatus",
-        null, 
+        null,
         {
           params: {
             bookingId: bookingId,
@@ -199,7 +206,7 @@ function WorkerDashboard() {
           },
         }
       );
-      // console.log(response.data); 
+      // console.log(response.data);
       // this calls the three function again to update the details
       fetchWorkerBookings("accepted");
       fetchWorkerBookings("completed");
@@ -208,6 +215,28 @@ function WorkerDashboard() {
     } catch (error) {
       console.log("Error updating booking status at workerDashboard:", error);
     }
+  };
+  const updateWorkerDetail = async (workerInfo) => {
+    await axios
+      .post("http://localhost:8080/api/worker/updateWorkerDetail", null, {
+        params: {
+          workerId: workerDetails._id,
+          name: workerInfo.name,
+          contactNumber: workerInfo.contactNumber,
+          about: workerInfo.about,
+          experience: workerInfo.experience,
+          location: workerInfo.location,
+          serviceCost: Number(workerInfo.serviceCost),
+        },
+      })
+      .then(function (response) {
+        fetchWorkerDetails();
+        alert("Worker updated successfully");
+        // console.log("The response is ", response);
+      })
+      .catch(function (error) {
+        console.log("The error is ", error);
+      });
   };
   useEffect(() => {
     if (workerToken === null || isWorkerLoggedIn === null) {
@@ -221,7 +250,7 @@ function WorkerDashboard() {
 
   const handleOptionClick = (option) => {
     setSelectedOption(option);
-  }; 
+  };
 
   return (
     <div>
@@ -238,6 +267,8 @@ function WorkerDashboard() {
           fetchWorkerBookings={fetchWorkerBookings}
           workerBookings={workerBookings}
           handleBookingStatusChange={handleBookingStatusChange}
+          updateWorkerDetail={updateWorkerDetail}
+          fetchWorkerDetails={fetchWorkerDetails}
         />
       </div>
     </div>

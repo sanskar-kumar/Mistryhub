@@ -14,9 +14,8 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import { Link, useNavigate } from "react-router-dom";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
-const clientId=localStorage.getItem('clientId');
-const token=localStorage.getItem('token');
-
+const clientId = localStorage.getItem("clientId");
+const token = localStorage.getItem("token");
 
 function Card(props) {
   const navigate = useNavigate();
@@ -41,19 +40,38 @@ function Card(props) {
     workerId: props.props._id,
     clientId: clientId,
   });
-
+  const createBooking = async () => {
+    await axios
+      .post("http://localhost:8080/api/booking/createBooking", null, {
+        params: {
+          clientId: clientId,
+          workerId: serviceDetail.workerId,
+          visitDate: serviceDetail.visitDate,
+          visitTime: serviceDetail.visitTime,
+          description: serviceDetail.description,
+          comment: serviceDetail.comment,
+        },
+      })
+      .then(function (response) {
+        alert("Booking done successfully");
+        navigate("/clientDashboard")
+        // console.log("The response is ", response);
+      })
+      .catch(function (error) {
+        console.log("The error is ", error);
+      });
+  };
   const handleSubmit = () => {
-    console.log(clientId);
+    // console.log(clientId);
     if (clientId === null) {
       alert("Please Login First");
       // navigate to client Login page
       navigate("/clientLogin");
     } else {
       //call api to post the detail
-      //check if the token is still valid
       //check if the required fields are entered
-
-      console.log(serviceDetail);
+      createBooking();
+      // console.log(serviceDetail);
     }
   };
   const handleTimeChange = (event) => {
@@ -74,7 +92,7 @@ function Card(props) {
           <h4>Experience: {props.props.experience}</h4>
           <h4>Location: {props.props.location}</h4>
           <h4>Contact Number: {props.props.contactNumber}</h4>
-          <h4>Charge Per Service: ₹300 </h4>
+          <h4>Charge Per Service: {props.props.serviceCost} </h4>
         </div>
         <div className="worker_image">
           <img
@@ -155,9 +173,9 @@ function Card(props) {
                 label="Age"
                 onChange={handleTimeChange}
               >
-                <MenuItem value={1}>10 AM to 1 PM</MenuItem>
-                <MenuItem value={2}>2 PM to 5 PM</MenuItem>
-                <MenuItem value={3}>6 PM to 9 PM</MenuItem>
+                <MenuItem value={"10AM - 12PM"}>10 AM to 1 PM</MenuItem>
+                <MenuItem value={"2PM - 5PM"}>2 PM to 5 PM</MenuItem>
+                <MenuItem value={"6PM - 9PM"}>6 PM to 9 PM</MenuItem>
                 value={serviceDetail.visitDate}
               </Select>
             </DialogContent>

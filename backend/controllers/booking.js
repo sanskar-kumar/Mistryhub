@@ -6,14 +6,16 @@ const Worker = require("../models/worker");
 exports.createBooking = async function (req, res) {
   try {
     const { clientId, workerId, visitDate, visitTime, description, comment } =
-      req.body;
-
+      req.query;
     // Find the client and worker documents based on the provided IDs
     const client = await Client.findById(clientId);
     const worker = await Worker.findById(workerId);
 
-    if (!client || !worker) {
-      return res.status(404).json({ message: "Client or worker not found" });
+    if (!worker) {
+      return res.status(404).json({ message: "Worker not found" });
+    }
+    if (!client) {
+      return res.status(404).json({ message: "Clientnot found" });
     }
 
     // Create a new booking instance and populate the necessary fields
@@ -29,7 +31,7 @@ exports.createBooking = async function (req, res) {
       workerContact: worker.contactNumber,
       clientName: client.name,
       workerName: worker.name,
-      address:client.address,
+      address: client.address,
     });
 
     // Save the booking in the database
@@ -44,7 +46,7 @@ exports.createBooking = async function (req, res) {
 };
 exports.updateRating = async function (req, res) {
   try {
-    const { bookingId, ratingValue } = req.body;
+    const { bookingId, ratingValue } = req.query;
 
     const booking = await Booking.findById(bookingId);
     if (!booking) {

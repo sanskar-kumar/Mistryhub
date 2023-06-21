@@ -29,7 +29,6 @@ app.use(function (req, res, next) {
 
 app.use("/api/worker",require("./routes/worker"));
 app.use("/api/detail",require("./routes/detail"));
-app.use("/api/rating",require("./routes/rating"));
 app.use("/api/client",require("./routes/client"));
 app.use("/api/booking",require("./routes/booking"));
 //port number allocation and listening on that port

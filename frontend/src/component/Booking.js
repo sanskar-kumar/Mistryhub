@@ -60,9 +60,10 @@ const BookingRequests = ({
   bookingDetails,
   isWorker,
   handleBookingStatusChange,
+  updateRating,
 }) => {
   // console.log(isWorker);
-  const [ratingValue, setValue] = useState(0);
+  const [ratingValues, setRatingValues] = useState({});
   const [hover, setHover] = React.useState(-1);
 
   // console.log(bookingDetails);
@@ -72,8 +73,8 @@ const BookingRequests = ({
 
       {bookingDetails && bookingDetails.length > 0 ? (
         <div>
-          {bookingDetails.map((request) => (
-            <div className="booking-card">
+          {[...bookingDetails].reverse().map((request) => (
+            <div className="booking-card" key={request._id}>
               <p className="booking-card-content">Booking Id: {request._id};</p>
               <p className="booking-card-content">
                 Worker Category: {request.serviceCategory};
@@ -107,13 +108,16 @@ const BookingRequests = ({
               </p>
 
               <p className="booking-card-content">
-                Visiting Time: {request.visitTime};
+                Visiting Time: {request.visitTime}
               </p>
               <p className="booking-card-content">
-                Contact Number: {request.workerContact};
+                Contact Number: {request.workerContact}
               </p>
               <p className="booking-card-content">
-                Service Description: {request.description};
+                Service Description: {request.description}
+              </p>
+              <p className="booking-card-content">
+                Additional Comment: {request.comment}
               </p>
               {typeofRequest === "Ongoing Services" ? (
                 <div style={{ textAlign: "center" }}>
@@ -125,7 +129,7 @@ const BookingRequests = ({
                         aria-label="add"
                         sx={{ mr: 1 }}
                       >
-                        <PendingIcon sx={{ mr: 1 }} /> Pending
+                        <PendingIcon sx={{ mr: 1 }} /> In Process
                       </Fab>
                       {isWorker === true ? (
                         <Fab
@@ -141,37 +145,45 @@ const BookingRequests = ({
                         </Fab>
                       ) : null}
                     </>
-                  ) : request.status === "pending" ? (
-                    <Fab variant="extended" color="warning" aria-label="add">
-                      <PendingIcon sx={{ mr: 1 }} /> Pending
-                    </Fab>
-                  ) : request.status === "declined" ? (
-                    <Fab variant="extended" color="error" aria-label="add">
-                      <ThumbDownAltRoundedIcon sx={{ mr: 1 }} />
-                      Declined
-                    </Fab>
                   ) : null}
                 </div>
-              ) : typeofRequest === "Completed Services" ? (
-                <div style={{ textAlign: "center" }}>
-                  {/* only show this when that particular service is not rated */}
-                  <StyledRating
-                    name="highlight-selected-only"
-                    value={ratingValue}
-                    onChange={(event, newValue) => {
-                      setValue(newValue);
-                      console.log(newValue);
-                    }}
-                    IconContainerComponent={IconContainer}
-                    getLabelText={(value) => customIcons[value].label}
-                    highlightSelectedOnly
-                    size="large"
-                    onChangeActive={(event, newHover) => {
-                      setHover(newHover);
-                    }}
-                  />
-                  <div>{hover !== -1 ? customIcons[hover].label : null}</div>
+              ) : typeofRequest === "Declined Requests" ? (
+                <div style={{textAlign:'center'}}>
+                <Fab
+                  variant="extended"
+                  color="error"
+                  aria-label="add"
+                  sx={{ ml: 1 }}
+                >
+                  Declined
+                </Fab>
                 </div>
+                
+              ) : typeofRequest === "Completed Services" ? (
+                !isWorker && (
+                  <div style={{ textAlign: "center" }}>
+                    <StyledRating
+                      name={`highlight-selected-only-${request._id}`}
+                      value={ratingValues[request._id] || request.rating}
+                      onChange={(event, newValue) => {
+                        setRatingValues((prevState) => ({
+                          ...prevState,
+                          [request._id]: newValue,
+                        }));
+                        // console.log(newValue);
+                        updateRating(request._id, newValue);
+                      }}
+                      IconContainerComponent={IconContainer}
+                      getLabelText={(value) => customIcons[value].label}
+                      highlightSelectedOnly
+                      size="large"
+                      onChangeActive={(event, newHover) => {
+                        setHover(newHover);
+                      }}
+                    />
+                    <div>{hover !== -1 ? customIcons[hover].label : null}</div>
+                  </div>
+                )
               ) : typeofRequest === "New Requests" ? ( // Your New Requests component here
                 <div style={{ textAlign: "center" }}>
                   <Fab

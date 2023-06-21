@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import Navbar from "./Navbar";
-import Form from "./UpdateForm";
 import "./clientDashboard.css";
 import ClientBookings from "./Booking";
 import ViewProfile from "./UserProfile";
@@ -62,11 +61,11 @@ const Sidebar = ({ handleOptionClick, selectedOption ,clientDetails}) => {
         </li>
         <li
           className={
-            selectedOption === "Option 3" ? "li-selected" : "li-normal"
+            selectedOption === "Option 7" ? "li-selected" : "li-normal"
           }
-          onClick={() => handleOptionClick("Option 3")}
+          onClick={() => handleOptionClick("Option 7")}
         >
-          Edit Profile
+          Declined Requests
         </li>
         <li
           className={
@@ -81,7 +80,7 @@ const Sidebar = ({ handleOptionClick, selectedOption ,clientDetails}) => {
   );
 };
 
-const Content = ({ selectedOption, clientDetails }) => {
+const Content = ({ selectedOption, clientDetails,updateRating }) => {
   const clientId = localStorage.getItem("clientId");
   const [clientBookings, setClientBookings] = useState([]);
   const fetchClientBookings = async (status) => {
@@ -110,6 +109,9 @@ const Content = ({ selectedOption, clientDetails }) => {
     } else if (selectedOption === "Option 6") {
       fetchClientBookings("pending");
     }
+    else if (selectedOption === "Option 7") {
+      fetchClientBookings("declined");
+    }
   }, [selectedOption]);
   // console.log(clientBookings);
   return (
@@ -118,19 +120,27 @@ const Content = ({ selectedOption, clientDetails }) => {
         <ClientBookings
           typeofRequest={"Ongoing Services"}
           bookingDetails={clientBookings}
+          updateRating={updateRating}
         />
       ) : selectedOption === "Option 6" ? (
         <ClientBookings
           typeofRequest={"Pending Requests"}
           bookingDetails={clientBookings}
+          updateRating={updateRating}
         />
       ) : selectedOption === "Option 2" ? (
         <ClientBookings
           typeofRequest={"Completed Services"}
           bookingDetails={clientBookings}
+          updateRating={updateRating}
+          isWorker={false}
         />
-      ) : selectedOption === "Option 3" ? (
-        <Form />
+      ): selectedOption === "Option 7" ? (
+        <ClientBookings
+          typeofRequest={"Declined Requests"}
+          bookingDetails={clientBookings}
+          updateRating={updateRating}
+        />
       ) : selectedOption === "Option 4" ? (
         <ViewProfile detail={clientDetails} />
       ) : null}
@@ -160,6 +170,25 @@ function ClientDashboard() {
       navigate("/clientLogin");
     }
   };
+  const updateRating=async (bookingId,ratingValue) =>{
+    try{
+      const response=await axios.post(
+        "http://localhost:8080/api/booking/updateRating",
+        null, 
+        {
+          params: {
+            bookingId: bookingId,
+            ratingValue:ratingValue,
+          },
+        }
+       
+
+      );
+      // console.log(response.data);
+    } catch(error){
+      console.log("Error updating rating:", error);
+    }
+  }
 
   useEffect(() => {
     if (clientToken === null || isClientLoggedIn === null) {
@@ -186,6 +215,7 @@ function ClientDashboard() {
         <Content
           selectedOption={selectedOption}
           clientDetails={clientDetails}
+          updateRating={updateRating}
         />
       </div>
     </div>
