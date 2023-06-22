@@ -41,8 +41,8 @@ exports.singleDetail = function (req, res) {
 
 exports.getWorkerDetail = async function (req, res) {
   try {
-    const { WorkerId } = req.body;
-    const worker = await Worker.findById(WorkerId);
+    const { workerId } = req.query;
+    const worker = await Worker.findById(workerId);
     if (!worker) {
       return res
         .status(500)

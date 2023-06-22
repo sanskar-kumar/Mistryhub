@@ -14,11 +14,10 @@ const WorkerProfile = () => {
         const response = await axios.get(
           "http://localhost:8080/api/worker/getWorkerDetail",
           {
-            headers: { Authorization: `Bearer ${workerToken}` },
             params: { workerId: workerId },
           }
         );
-        setWorkerDetails(response.data.authorizedData.worker);
+        setWorkerDetails(response.data);
       } catch (error) {
         console.log("Error fetching worker details:", error);
         localStorage.removeItem("workerToken");
@@ -35,7 +34,7 @@ const WorkerProfile = () => {
   return (
     <div className="profile-container">
       <div className="profile-header">
-        <img src="https://w0.peakpx.com/wallpaper/214/949/HD-wallpaper-thomas-shelby-fondo-de-pantalla.jpg" alt="User Profile" className="profile-pic" />
+        <img src="https://cdn.xxl.thumbs.canstockphoto.com/worker-with-protective-gear-with-thumbs-up-stock-photograph_csp5308829.jpg" alt="User Profile" className="profile-pic" />
         <h2 className="profile-name">{workerDetails.name}</h2>
       </div>
       <div className="profile-details">
@@ -54,6 +53,10 @@ const WorkerProfile = () => {
         <div className="profile-info">
           <label>Category:</label>
           <p>{workerDetails.category}</p>
+        </div>
+        <div className="profile-info">
+          <label>Service Cost:</label>
+          <p>{workerDetails.serviceCost}</p>
         </div>
         <div className="profile-info">
           <label>About:</label>

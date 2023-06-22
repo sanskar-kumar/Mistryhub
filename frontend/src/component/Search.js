@@ -2,10 +2,12 @@ import "./style.css";
 import SearchIcon from "@mui/icons-material/Search";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import { camelCase, capitalize } from "lodash";
 
 function SearchBar() {
   const [searchItem, setSearchItem] = useState("");
-  var tbl = `detail/${searchItem}`;
+  const convertedSearchItem = capitalize(camelCase(searchItem));
+  var tbl = `detail/${convertedSearchItem}`;
 
   return (
     <div className="search-bar-parent" id="search">
@@ -13,7 +15,11 @@ function SearchBar() {
         <Link to={tbl} style={{ textDecoration: "none" }}>
           <button
             type="button"
-            style={{ width: "5%", backgroundColor: "transparent", border: "0" }}
+            style={{
+              width: "5%",
+              backgroundColor: "transparent",
+              border: "0",
+            }}
           >
             <SearchIcon sx={{ fontSize: 40, color: "#00ADB5" }} />
           </button>
@@ -31,4 +37,5 @@ function SearchBar() {
     </div>
   );
 }
+
 export default SearchBar;

@@ -1,11 +1,9 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React, {useState } from "react";
 import "./clientDashboard.css";
 
 import Fab from "@mui/material/Fab";
 import PendingIcon from "@mui/icons-material/Pending";
 import DoneIcon from "@mui/icons-material/Done";
-import ThumbDownAltRoundedIcon from "@mui/icons-material/ThumbDownAltRounded";
 import PropTypes from "prop-types";
 import { styled } from "@mui/material/styles";
 import Rating from "@mui/material/Rating";

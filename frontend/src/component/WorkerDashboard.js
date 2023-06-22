@@ -23,7 +23,7 @@ const Sidebar = ({ handleOptionClick, selectedOption, workerDetails }) => {
       {/* <h4 style={{ textAlign: "center" }}>Welcome Thomas Shelby</h4> */}
       <div style={{ textAlign: "center", margin: "2%", padding: "5%" }}>
         <img
-          src="https://w0.peakpx.com/wallpaper/214/949/HD-wallpaper-thomas-shelby-fondo-de-pantalla.jpg"
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQgFkKppvUg9yEoHgVrMANMdj_OdZ-aZxcb4Dp_rpKj0GAr-qZePZL65YqrVUHZyxts7pw"
           alt="User Profile"
           className="profile-pic"
         />
@@ -101,16 +101,18 @@ const Content = ({
   updateWorkerDetail,
   fetchWorkerDetails,
 }) => {
-  const workerId = localStorage.getItem("workerId");
-
   // const [workerBookings, setWorkerBookings] = useState([]);
+
   useEffect(() => {
+    // console.log(selectedOption);
     if (selectedOption === "Option 1") {
       fetchWorkerBookings("accepted");
     } else if (selectedOption === "Option 2") {
       fetchWorkerBookings("completed");
     } else if (selectedOption === "Option 5") {
       fetchWorkerBookings("pending");
+    } else if (selectedOption === "Option 6") {
+      fetchWorkerDetails();
     }
   }, [selectedOption]);
   return (
@@ -144,7 +146,7 @@ const Content = ({
           handleBookingStatusChange={handleBookingStatusChange}
         />
       ) : selectedOption === "Option 6" ? (
-        <Insights detail={workerDetails} />
+        <Insights workerDetails={workerDetails} />
       ) : null}
     </div>
   );
@@ -163,10 +165,11 @@ function WorkerDashboard() {
       const response = await axios.get(
         "http://localhost:8080/api/worker/getWorkerDetail",
 
-        { headers: { Authorization: `Bearer ${workerToken}` } },
-        { workerId: workerId }
+        {
+          params: { workerId: workerId },
+        }
       );
-      setworkerDetails(response.data.authorizedData.worker);
+      setworkerDetails(response.data);
     } catch (error) {
       console.log("Error fetching worker details:", error);
       localStorage.removeItem("workerToken");
@@ -206,11 +209,12 @@ function WorkerDashboard() {
           },
         }
       );
+      window.location.reload();
       // console.log(response.data);
       // this calls the three function again to update the details
-      fetchWorkerBookings("accepted");
-      fetchWorkerBookings("completed");
-      fetchWorkerBookings("pending");
+      // fetchWorkerBookings("accepted");
+      // fetchWorkerBookings("completed");
+      // fetchWorkerBookings("pending");
       // ...
     } catch (error) {
       console.log("Error updating booking status at workerDashboard:", error);
@@ -243,6 +247,7 @@ function WorkerDashboard() {
       alert("Session Expired");
       navigate("/workerLogin");
     } else {
+      // console.log(workerId);
       fetchWorkerDetails();
     }
   }, [[isWorkerLoggedIn, workerToken, fetchWorkerDetails]]);

@@ -11,11 +11,9 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
-import { Link, useNavigate } from "react-router-dom";
-import Select, { SelectChangeEvent } from "@mui/material/Select";
+import { useNavigate } from "react-router-dom";
+import Select from "@mui/material/Select";
 const clientId = localStorage.getItem("clientId");
-const token = localStorage.getItem("token");
 
 function Card(props) {
   const navigate = useNavigate();
@@ -54,7 +52,7 @@ function Card(props) {
       })
       .then(function (response) {
         alert("Booking done successfully");
-        navigate("/clientDashboard")
+        navigate("/clientDashboard");
         // console.log("The response is ", response);
       })
       .catch(function (error) {
@@ -93,6 +91,7 @@ function Card(props) {
           <h4>Location: {props.props.location}</h4>
           <h4>Contact Number: {props.props.contactNumber}</h4>
           <h4>Charge Per Service: {props.props.serviceCost} </h4>
+          <h4>{props.props.ratingAverage}</h4>
         </div>
         <div className="worker_image">
           <img
@@ -108,7 +107,7 @@ function Card(props) {
         <div className="rating">
           <Rating
             name="half-rating-read"
-            defaultValue={2.5}
+            defaultValue={props.props.ratingAverage}
             precision={0.5}
             size="large"
             readOnly

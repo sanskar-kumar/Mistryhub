@@ -41,7 +41,7 @@ function Form({ workerDetails, updateWorkerDetail }) {
       // localStorage.removeItem("workerToken");
       // localStorage.removeItem("workerId");
       // localStorage.removeItem("isWorkerLoggedIn");
-      navigate('/workerDashboard');
+      // navigate('/workerDashboard');
     }
   };
   return (

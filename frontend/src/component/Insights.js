@@ -1,53 +1,20 @@
-import { Bar } from "react-chartjs-2";
-import Chart from "chart.js/auto";
-export default function BarChart(props) {
-  const { detail } = props;
-  const {
-    ratingAverage,
-    servicesCompleted,
-    oneStarRatings,
-    twoStarRatings,
-    threeStarRatings,
-    fourStarRatings,
-    fiveStarRatings,
-    totalEarning,
-    rewardPoints,
-  } = detail;
-  // console.log("The props are ", props.props.fiveStar);
-  // var ratings=[props.props.fiveStar,props.props.fourStar,props.props.threeStar,props.props.twoStar,props.props.oneStar];
-  var ratings = [
-    oneStarRatings,
-    twoStarRatings,
-    threeStarRatings,
-    fourStarRatings,
-    fiveStarRatings,
-  ];
-  // console.log("The ratings are ", ratings);
-  const data = {
-    labels: ["5⭐", "4⭐", "3⭐", "2⭐", "1⭐"],
+import React from "react";
+import { VictoryBar, VictoryChart, VictoryAxis, VictoryLabel } from "victory";
 
-    datasets: [
-      {
-        label: "Number of Ratings",
-        data: ratings,
-        backgroundColor: [
-          "#0A2647",
-          "#144272",
-          "#205295",
-          "#2C74B3",
-          "#BAD7E9",
-        ],
-        borderColor: [
-          "#A47E3B",
-          "#A47E3B",
-          "rgba(255, 206, 86, 1)",
-          "rgba(255, 206, 86, 1)",
-          "rgba(255, 206, 86, 1)",
-        ],
-        borderWidth: 3,
-      },
-    ],
-  };
+export default function BarChart({ workerDetails }) {
+  if (!workerDetails) {
+    // If workerDetails is not available yet, you can show a loading indicator or return null
+    return <div>Loading...</div>;
+  }
+
+  const ratings = [
+    { star: "5⭐", count: workerDetails.fiveStarRatings },
+    { star: "4⭐", count: workerDetails.fourStarRatings },
+    { star: "3⭐", count: workerDetails.threeStarRatings },
+    { star: "2⭐", count: workerDetails.twoStarRatings },
+    { star: "1⭐", count: workerDetails.oneStarRatings },
+  ];
+
   return (
     <div>
       <h1 style={{ textAlign: "center", margin: "1%" }}>INSIGHTS</h1>
@@ -60,7 +27,7 @@ export default function BarChart(props) {
             fontFamily: "monospace",
           }}
         >
-          ₹{totalEarning}
+          ₹{workerDetails.totalEarning}
         </h1>
       </div>
       <div className="money-earned">
@@ -72,7 +39,7 @@ export default function BarChart(props) {
             fontFamily: "monospace",
           }}
         >
-          {servicesCompleted}
+          {workerDetails.servicesCompleted}
         </h1>
       </div>
       <div className="money-earned">
@@ -84,7 +51,7 @@ export default function BarChart(props) {
             fontFamily: "monospace",
           }}
         >
-          {rewardPoints}
+          {workerDetails.rewardPoints}
           {/* average rating * 10 */}
         </h1>
       </div>
@@ -105,48 +72,52 @@ export default function BarChart(props) {
           marginTop: "0",
           textAlign: "center",
           outline: "solid",
-          padding: "2%",
+          padding: "1%",
         }}
       >
-        <Bar
-          data={data}
-          width={100}
-          height={100}
-          options={{
-            scales: {
-              y: {
-                ticks: {
-                  font: {
-                    size: 25, // This changes the font size
-                  },
-                },
+        <VictoryChart
+          domainPadding={20}
+          height={400}
+          width={600}
+          // animate={{ duration: 50 }}
+        >
+          <VictoryLabel
+            text="Rating Chart"
+            x={300}
+            y={30}
+            textAnchor="middle"
+            style={{
+              fontSize: 30,
+              fontWeight: "bold",
+              fontFamily: "monospace",
+            }}
+          />
+          <VictoryAxis
+            dependentAxis
+            style={{
+              axisLabel: { padding: 20, fontSize: 15 },
+              tickLabels: { fontSize: 20 },
+            }}
+          />
+          <VictoryAxis
+            tickFormat={ratings.map((data) => data.star)}
+            style={{
+              tickLabels: { fontSize: 20 },
+            }}
+          />
+          <VictoryBar
+            data={ratings}
+            x="star"
+            y="count"
+            style={{
+              data: {
+                fill: "#0A2647",
+                stroke: "#A47E3B",
+                strokeWidth: 3,
               },
-              x: {
-                ticks: {
-                  font: {
-                    size: 25, // This changes the font size
-                  },
-                },
-                title: {
-                  display: true,
-                  text: "Hunt for More Stars for exciting rewards", // Replace with your desired x-axis label
-                  font: {
-                    size: 25, // This changes the font size of the x-axis label
-                  },
-                },
-              },
-            },
-            plugins: {
-              title: {
-                display: true,
-                text: "Rating Chart", // Replace with your desired chart title
-                font: {
-                  size: 30, // This changes the font size of the chart title
-                },
-              },
-            },
-          }}
-        />
+            }}
+          />
+        </VictoryChart>
       </div>
     </div>
   );

@@ -4,12 +4,11 @@ const cors = require("cors");
 const bodyParser = require("body-parser");
 const app = express();
 app.use(cors());
-app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
-app.use(bodyParser.json({ limit: '50mb' }));
+app.use(bodyParser.urlencoded({ limit: "50mb", extended: true }));
+app.use(bodyParser.json({ limit: "50mb" }));
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-
 
 connectDB();
 
@@ -26,11 +25,10 @@ app.use(function (req, res, next) {
   next();
 });
 
-
-app.use("/api/worker",require("./routes/worker"));
-app.use("/api/detail",require("./routes/detail"));
-app.use("/api/client",require("./routes/client"));
-app.use("/api/booking",require("./routes/booking"));
+app.use("/api/worker", require("./routes/worker"));
+app.use("/api/detail", require("./routes/detail"));
+app.use("/api/client", require("./routes/client"));
+app.use("/api/booking", require("./routes/booking"));
 //port number allocation and listening on that port
 let port = process.env.PORT;
 if (port == null || port == "") {

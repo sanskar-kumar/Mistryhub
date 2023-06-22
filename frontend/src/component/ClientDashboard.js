@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Navbar from "./Navbar";
 import "./clientDashboard.css";
 import ClientBookings from "./Booking";
@@ -20,7 +20,7 @@ const Sidebar = ({ handleOptionClick, selectedOption ,clientDetails}) => {
     <div className="sidebar">
       <div style={{ textAlign: "center", margin: "2%", padding: "5%" }}>
         <img
-          src="https://w0.peakpx.com/wallpaper/214/949/HD-wallpaper-thomas-shelby-fondo-de-pantalla.jpg"
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQgFkKppvUg9yEoHgVrMANMdj_OdZ-aZxcb4Dp_rpKj0GAr-qZePZL65YqrVUHZyxts7pw"
           alt="User Profile"
           className="profile-pic"
         />

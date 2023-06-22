@@ -82,7 +82,7 @@ exports.clientRegister = function (req, res) {
                       <p>Thank you for joining us!</p>
                       <p>Best regards,</p>
                       <p>The MistryHub Team</p>
-                      <img class="logo" src="https://example.com/image.jpg" alt="MistryHub Logo">
+                      <img class="logo" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQgFkKppvUg9yEoHgVrMANMdj_OdZ-aZxcb4Dp_rpKj0GAr-qZePZL65YqrVUHZyxts7pw" alt="MistryHub Logo">
                     </body>
                   </html>
                 `,
